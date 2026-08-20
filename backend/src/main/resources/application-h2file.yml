@@ -1,0 +1,11 @@
+# Profil H2 PERSISTANT (fichier) — aucune installation MySQL/Docker nécessaire
+# Les données sont sauvegardées dans le dossier : backend/data/gns_sirh.mv.db
+# Lancement : .\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=h2file"
+spring:
+  datasource:
+    url: jdbc:h2:file:./data/gns_sirh;MODE=MySQL
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect

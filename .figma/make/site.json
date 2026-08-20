@@ -1,0 +1,10 @@
+{
+  "description": "CREE connects users with local community resources and services, empowering individuals to access support and enhance their well-being.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

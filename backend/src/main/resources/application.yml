@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gns-sirh-backend
+  profiles:
+    active: mysql
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+        jdbc:
+          time_zone: UTC
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: UTC
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 12MB
+
+app:
+  jwt:
+    # Clé HMAC 256 bits (à changer en production). La même clé doit rester stable entre redémarrages.
+    secret: "gNs_S1rH_2026_SecretKey_ChangeMe_0123456789abcdef0123456789abcdef"
+    expiration-ms: 86400000   # 24h
+  upload-dir: ./uploads/justificatifs
+
+logging:
+  level:
+    org.hibernate.SQL: warn
+    com.gns.sirh: info
