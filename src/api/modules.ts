@@ -2,7 +2,7 @@
  * Fonctions API du frontend — tous les modules.
  */
 import {
-  get, post, put, del, postForm, downloadFile, request,
+  get, post, put, del, postForm, downloadFile, openFile, request,
 } from './http'
 import type {
   AuthResponse, EmployeProfile, ApiPage, EmployeListItem, EmployeDetail, IdLabel,
@@ -144,7 +144,7 @@ export const documentsApi = {
   traiter: (id: number) => post<DemandeDocument>(`/documents/demandes/${id}/traiter`),
   refuser: (id: number, motif: string) =>
     post<DemandeDocument>(`/documents/demandes/${id}/refuser`, { motif }),
-  telecharger: (id: number) => downloadFile(`/documents/${id}/telecharger`, 'document.pdf'),
+  telecharger: (id: number) => openFile(`/documents/${id}/telecharger`, 'document.pdf'),
   exporterExcel: () => downloadFile('/documents/export', 'demandes_documents.xlsx'),
 }
 

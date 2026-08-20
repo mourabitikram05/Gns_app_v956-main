@@ -92,7 +92,7 @@ public class DocumentController {
         DemandeDocument d = documentService.verifierAcces(id, SecurityUtils.currentUser());
         byte[] contenu = documentService.lireFichier(d);
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + documentService.nomFichier(d) + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + documentService.nomFichier(d) + "\"")
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(contenu);
     }
@@ -117,7 +117,7 @@ public class DocumentController {
         byte[] contenu = documentService.exporterPdf(SecurityUtils.currentUser());
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION,
-                        "attachment; filename=\"" + nomFichier + "\"; filename*=UTF-8''" + nomFichier)
+                        "inline; filename=\"" + nomFichier + "\"; filename*=UTF-8''" + nomFichier)
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(contenu);
     }

@@ -12,7 +12,7 @@ import type {
 } from '../../api/types'
 import type { DepartementItem, EquipeItem } from '../../api/modules'
 import type { RapportMensuelData } from './rapportMensuel'
-import { downloadPdf, safeFileName } from './common'
+import { openPdf, safeFileName } from './common'
 import { employeePdf } from './employees'
 import { congePdf, calendrierPdf } from './conges'
 import { presencePdf } from './presences'
@@ -47,60 +47,60 @@ export {
 // ---------------------------------------------------------------------------
 
 export function downloadEmployeePdf(employes: EmployeListItem[]): void {
-  downloadPdf(employeePdf(employes), `annuaire_employes_${safeFileName(new Date().toISOString().slice(0, 10))}.pdf`)
+  openPdf(employeePdf(employes), `annuaire_employes_${safeFileName(new Date().toISOString().slice(0, 10))}.pdf`)
 }
 
 export function downloadCongePdf(demandes: DemandeConge[], solde?: SoldeResponse | null, titre?: string): void {
-  downloadPdf(congePdf(demandes, solde, titre), 'demandes_conges.pdf')
+  openPdf(congePdf(demandes, solde, titre), 'demandes_conges.pdf')
 }
 
 export function downloadCalendrierPdf(calendrier: CalendrierEquipe): void {
-  downloadPdf(calendrierPdf(calendrier), `planning_conges_${calendrier.mois}_${calendrier.annee}.pdf`)
+  openPdf(calendrierPdf(calendrier), `planning_conges_${calendrier.mois}_${calendrier.annee}.pdf`)
 }
 
 export function downloadPresencePdf(pointages: Pointage[], employeNom?: string | null): void {
-  downloadPdf(presencePdf(pointages, employeNom), 'presences_pointage.pdf')
+  openPdf(presencePdf(pointages, employeNom), 'presences_pointage.pdf')
 }
 
 export function downloadRecrutementPdf(offres: OffreEmploi[], candidatures: Candidature[], offreFiltre?: string): void {
-  downloadPdf(recrutementPdf(offres, candidatures, offreFiltre), 'recrutement.pdf')
+  openPdf(recrutementPdf(offres, candidatures, offreFiltre), 'recrutement.pdf')
 }
 
 export function downloadOffresPdf(offres: OffreEmploi[]): void {
-  downloadPdf(offresPdf(offres), 'offres_emploi.pdf')
+  openPdf(offresPdf(offres), 'offres_emploi.pdf')
 }
 
 export function downloadCandidatsPdf(candidats: CandidatItem[]): void {
-  downloadPdf(candidatsPdf(candidats), 'candidats.pdf')
+  openPdf(candidatsPdf(candidats), 'candidats.pdf')
 }
 
 export function downloadNotesFraisPdf(notes: NoteFrais[]): void {
-  downloadPdf(notesFraisPdf(notes), 'notes_de_frais.pdf')
+  openPdf(notesFraisPdf(notes), 'notes_de_frais.pdf')
 }
 
 export function downloadKpiPdf(kpis: KpiReport[], filters?: { categorie?: string; departement?: string }): void {
-  downloadPdf(kpiPdf(kpis, filters), 'kpi_reporting.pdf')
+  openPdf(kpiPdf(kpis, filters), 'kpi_reporting.pdf')
 }
 
 export function downloadRapportHistoryPdf(rapports: RapportRH[]): void {
-  downloadPdf(rapportHistoryPdf(rapports), 'historique_rapports.pdf')
+  openPdf(rapportHistoryPdf(rapports), 'historique_rapports.pdf')
 }
 
 export function downloadDocumentPdf(demandes: DemandeDocument[], stats?: StatsDocuments | null, titre?: string): void {
-  downloadPdf(documentPdf(demandes, stats, titre), 'demandes_documents.pdf')
+  openPdf(documentPdf(demandes, stats, titre), 'demandes_documents.pdf')
 }
 
 /** Télécharge un document administratif officiel (attestation, certificat…). */
 export function downloadDocumentOfficielPdf(demande: DemandeDocument): void {
-  downloadPdf(documentOfficielPdf(demande), `${safeFileName(demande.reference)}.pdf`)
+  openPdf(documentOfficielPdf(demande), `${safeFileName(demande.reference)}.pdf`)
 }
 
 export function downloadStructurePdf(departements: DepartementItem[], equipes: EquipeItem[]): void {
-  downloadPdf(structurePdf(departements, equipes), 'structures_rh.pdf')
+  openPdf(structurePdf(departements, equipes), 'structures_rh.pdf')
 }
 
 export function downloadAlertesPdf(actions: ActionAttente[]): void {
-  downloadPdf(alertesPdf(actions), 'alertes_rh.pdf')
+  openPdf(alertesPdf(actions), 'alertes_rh.pdf')
 }
 
 export function downloadDashboardPdf(data: {
@@ -111,11 +111,11 @@ export function downloadDashboardPdf(data: {
   activite: { text: string; time: string; dot: string }[]
   enPoste?: number
 }): void {
-  downloadPdf(dashboardPdf(data), 'dashboard_rh.pdf')
+  openPdf(dashboardPdf(data), 'dashboard_rh.pdf')
 }
 
 export function downloadRapportMensuelPdf(data: RapportMensuelData): void {
-  downloadPdf(rapportMensuelPdf(data), `rapport_mensuel_rh_${data.mois}_${data.annee}.pdf`)
+  openPdf(rapportMensuelPdf(data), `rapport_mensuel_rh_${data.mois}_${data.annee}.pdf`)
 }
 
 /** Nom de fichier standardisé pour un rapport mensuel. */

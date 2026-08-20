@@ -133,3 +133,45 @@ export async function downloadFile(path: string, fallbackName: string, init: Req
     URL.revokeObjectURL(url)
   }, 1000)
 }
+
+/**
+ * Ouvre un fichier (PDF) dans l'aperçu intégré du navigateur au lieu de le
+ * télécharger immédiatement : l'utilisateur consulte le document puis le
+ * télécharge s'il le souhaite (bouton du lecteur PDF).
+ * Si la popup est bloquée, bascule sur un téléchargement direct.
+ */
+export async function openFile(path: string, fallbackName: string, init: RequestInit = {}) {
+  const res = await fetch(API_BASE + path, { ...init, headers: buildHeaders(init) })
+  if (!res.ok) {
+    let message = `Erreur ${res.status}`
+    try {
+      const payload = (await res.json()) as { message?: string }
+      message = payload?.message || message
+    } catch {
+      /* réponse non JSON */
+    }
+    throw new ApiError(res.status, message)
+  }
+  const blob = await res.blob()
+  const disposition = res.headers.get('Content-Disposition') || ''
+  const filename = parseDispositionFilename(disposition) || fallbackName
+
+  const url = URL.createObjectURL(blob)
+  const win = window.open(url, '_blank')
+  // Laisse l'aperçu actif : l'URL est libérée après 5 minutes
+  setTimeout(() => URL.revokeObjectURL(url), 5 * 60 * 1000)
+  if (!win) {
+    // Popup bloquée : repli sur le téléchargement direct
+    const a = document.createElement('a')
+    a.href = url
+    a.download = filename
+    a.rel = 'noopener'
+    a.style.display = 'none'
+    document.body.appendChild(a)
+    a.click()
+    setTimeout(() => {
+      a.remove()
+      URL.revokeObjectURL(url)
+    }, 1000)
+  }
+}

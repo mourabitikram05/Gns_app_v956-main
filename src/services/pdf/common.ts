@@ -584,24 +584,31 @@ export function signatureBlock(ctx: PdfContext, lines: Array<[string, string]> =
 // ---------------------------------------------------------------------------
 
 /**
- * Télécharge un vrai fichier PDF : crée un Blob PDF valide, une URL objet
- * temporaire, puis déclenche le téléchargement natif du navigateur.
- * L'URL Blob est révoquée après le téléchargement.
+ * Ouvre le PDF dans l'aperçu intégré du navigateur (lecteur PDF) au lieu de le
+ * télécharger immédiatement : l'utilisateur consulte le document puis le
+ * télécharge s'il le souhaite via le bouton du lecteur.
+ * Si la popup est bloquée, bascule sur un téléchargement direct.
  */
-export function downloadPdf(doc: jsPDF, filename: string): void {
+export function openPdf(doc: jsPDF, filename: string): void {
   const blob = doc.output('blob')
   const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = filename
-  a.rel = 'noopener'
-  a.style.display = 'none'
-  document.body.appendChild(a)
-  a.click()
-  setTimeout(() => {
-    a.remove()
-    URL.revokeObjectURL(url)
-  }, 1000)
+  const win = window.open(url, '_blank')
+  // Laisse l'aperçu actif : l'URL est libérée après 5 minutes
+  setTimeout(() => URL.revokeObjectURL(url), 5 * 60 * 1000)
+  if (!win) {
+    // Popup bloquée : repli sur le téléchargement direct
+    const a = document.createElement('a')
+    a.href = url
+    a.download = filename
+    a.rel = 'noopener'
+    a.style.display = 'none'
+    document.body.appendChild(a)
+    a.click()
+    setTimeout(() => {
+      a.remove()
+      URL.revokeObjectURL(url)
+    }, 1000)
+  }
 }
 
 /** Nom de fichier sûr : minuscules, sans accents, sans caractères spéciaux. */
