@@ -1,8 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { Lock, Mail, LogIn, Loader2 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
-import gnsLogo from '@/imports/image.png'
-import { ImageWithFallback } from '../components/ImageWithFallback'
+import gnsLogo from '@/imports/GNS_logo.png'
 
 const TEST_ACCOUNTS = [
   { label: 'Responsable RH', email: 'rh@gns.ma', password: 'rh1234', color: '#C9A227' },
@@ -41,11 +40,7 @@ export default function Login() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-16 h-16 rounded-2xl overflow-hidden mb-3 shadow-lg">
-            <ImageWithFallback src={gnsLogo} alt="GNS Technologies" className="w-full h-full object-cover" />
-          </div>
-          <div className="text-white font-bold text-2xl tracking-wide">GNS</div>
-          <div className="text-sm font-semibold tracking-[0.3em]" style={{ color: '#C9A227' }}>TECHNOLOGIES</div>
+          <img src={gnsLogo} alt="GNS Technologies" className="h-24 w-auto mb-3" />
           <div className="text-xs mt-2" style={{ color: 'rgba(255,255,255,0.45)' }}>
             Portail SIRH — Congés, Annuaire &amp; Dashboards
           </div>

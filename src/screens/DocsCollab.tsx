@@ -258,7 +258,7 @@ export default function DocsCollab() {
                 {dispoDocs.map((doc) => (
                   <div key={doc.id}
                     className="flex items-center gap-3.5 p-3.5 rounded-xl border border-gray-200/80 hover:border-gray-300 hover:shadow-sm transition-all group">
-                    <div className="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#F0F4FF' }}>
+                    <div className="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'F3F4F6' }}>
                       <FileText size={20} style={{ color: '#000000' }} />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -370,7 +370,7 @@ export default function DocsCollab() {
                       </td>
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-2.5">
-                          <span className="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0" style={{ background: '#F0F4FF' }}>
+                          <span className="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0" style={{ background: 'F3F4F6' }}>
                             <FileText size={13} style={{ color: '#000000' }} />
                           </span>
                           <span className="text-xs font-medium text-gray-800">{row.typeDocument}</span>
@@ -421,7 +421,7 @@ export default function DocsCollab() {
           <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg animate-[modalIn_0.2s_ease-out] overflow-hidden">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
-                <span className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#F0F4FF' }}>
+                <span className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'F3F4F6' }}>
                   <FileText size={17} style={{ color: '#000000' }} />
                 </span>
                 <div>
@@ -528,7 +528,7 @@ export default function DocsCollab() {
           <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-xl animate-[modalIn_0.2s_ease-out] overflow-hidden max-h-[92vh] flex flex-col">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 flex-shrink-0">
               <div className="flex items-center gap-3">
-                <span className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#F0F4FF' }}>
+                <span className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#F3F4F6' }}>
                   <FileText size={17} style={{ color: '#000000' }} />
                 </span>
                 <div>

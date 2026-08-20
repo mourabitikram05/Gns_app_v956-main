@@ -396,7 +396,7 @@ export default function Annuaire() {
                     style={{ background: avatarColor(detail.id) }}>{detail.initiales}</div>
                   <h2 className="font-bold text-gray-900 text-lg">{detail.nomComplet}</h2>
                   <p className="text-sm text-gray-500">{detail.poste ?? '—'}</p>
-                  <span className="text-xs px-2 py-1 rounded-full font-medium mt-1 inline-block" style={{ background: '#F0F4FF', color: '#000000' }}>
+                  <span className="text-xs px-2 py-1 rounded-full font-medium mt-1 inline-block" style={{ background: 'F3F4F6', color: '#000000' }}>
                     {detail.departement ?? '—'}
                   </span>
                 </div>

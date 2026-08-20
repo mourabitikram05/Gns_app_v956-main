@@ -39,7 +39,7 @@ import java.util.List;
 public final class PdfGenerator {
 
     /** Bleu marine GNS (charte de l'application). */
-    private static final Color NAVY = new Color(15, 30, 61);
+    private static final Color NAVY = new Color(0, 0, 0);
     /** Or GNS — filets discrets uniquement. */
     private static final Color GOLD = new Color(201, 162, 39);
     /** Gris secondaire. */

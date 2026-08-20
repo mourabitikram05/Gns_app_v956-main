@@ -20,7 +20,7 @@ const NAV_ITEMS = [
   { id: 'frais-collab', label: 'Mes frais', icon: Receipt, group: 'Gestion', rhOnly: false },
   { id: 'docs-rh', label: 'Documents RH', icon: FileText, group: 'Ressources', rhOnly: true },
   { id: 'docs-collab', label: 'Mes Documents', icon: FileText, group: 'Ressources', rhOnly: false },
-  { id: 'recrutement', label: 'Recrutement', icon: Briefcase, group: 'Cnpm dev vrun ommunication', rhOnly: true },
+  { id: 'recrutement', label: 'Recrutement', icon: Briefcase, group: 'Communication', rhOnly: true },  
   { id: 'annuaire', label: 'Annuaire', icon: BookOpen, group: 'Communication', rhOnly: false },
   { id: 'evenements', label: 'Événements', icon: PartyPopper, group: 'Communication', rhOnly: false },
   { id: 'kpi', label: 'KPI & Reporting', icon: BarChart3, group: 'Admin', rhOnly: true },
@@ -192,13 +192,13 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
                       onClick={() => onNavigate(item.id)}
                       className="w-full flex items-center gap-3 px-4 py-2 text-sm transition-all duration-150"
                       style={{
-                        color: active ? '#fff' : 'rgba(255,255,255,0.55)',
+                        color: active ? '#fff' : 'rgba(255,255,255,0.65)',
                         background: active ? 'rgba(201,162,39,0.18)' : 'transparent',
                         borderLeft: active ? '2px solid #C9A227' : '2px solid transparent',
                       }}
                       title={!sidebarOpen ? item.label : undefined}
                     >
-                      <Icon size={16} className="flex-shrink-0" style={{ color: active ? '#C9A227' : 'rgba(255,255,255,0.45)' }} />
+                      <Icon size={16} className="flex-shrink-0" style={{ color: active ? '#C9A227' : 'rgba(255,255,255,0.6)' }} />
                       {sidebarOpen && <span className="truncate font-medium">{item.label}</span>}
                     </button>
                   )
@@ -352,7 +352,7 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
               <button
                 onClick={() => setDemandeOpen(!demandeOpen)}
                 className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold transition-all hover:opacity-90"
-                style={{ background: '#C9A227', border: '2px solid #111111', color: '#111111' }}
+                style={{ background: '#C9A227', border: '2px solid #000000', color: '#000000', boxShadow: '0 4px 14px -4px rgba(201,162,39,0.6)' }}
               >
                 + Nouvelle demande <ChevronDown size={14} />
               </button>

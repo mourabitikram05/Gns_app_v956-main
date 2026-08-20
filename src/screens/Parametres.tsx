@@ -126,7 +126,7 @@ export default function Parametres() {
   const CardTitle = ({ icon: Icon, title, desc }: { icon: typeof User; title: string; desc?: string }) => (
     <div className="px-6 py-5 border-b border-gray-100 flex items-start gap-3.5">
       <span className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-        style={{ background: '#F3F6FB', color: '#000000' }}>
+        style={{ background: '#F3F4F6', color: '#000000' }}>
         <Icon size={16} />
       </span>
       <div>
@@ -386,7 +386,7 @@ export default function Parametres() {
                 <button onClick={() => window.dispatchEvent(new CustomEvent('gns:navigate', { detail: 'acces' }))}
                   className="rounded-xl border border-gray-100 hover:border-[#000000]/30 hover:shadow-sm transition-all p-4 text-left group">
                   <span className="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
-                    style={{ background: '#F3F6FB', color: '#000000' }}>
+                    style={{ background: '#F3F4F6', color: '#000000' }}>
                     <ShieldCheck size={16} />
                   </span>
                   <div className="text-sm font-semibold text-gray-900 group-hover:text-[#000000]">Contrôle d'accès</div>
@@ -395,7 +395,7 @@ export default function Parametres() {
                 <button onClick={() => window.dispatchEvent(new CustomEvent('gns:navigate', { detail: 'structures' }))}
                   className="rounded-xl border border-gray-100 hover:border-[#000000]/30 hover:shadow-sm transition-all p-4 text-left group">
                   <span className="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
-                    style={{ background: '#F3F6FB', color: '#000000' }}>
+                    style={{ background: '#F3F4F6', color: '#000000' }}>
                     <UserCog size={16} />
                   </span>
                   <div className="text-sm font-semibold text-gray-900 group-hover:text-[#000000]">Structures</div>
@@ -404,7 +404,7 @@ export default function Parametres() {
                 <button onClick={() => window.dispatchEvent(new CustomEvent('gns:navigate', { detail: 'kpi' }))}
                   className="rounded-xl border border-gray-100 hover:border-[#000000]/30 hover:shadow-sm transition-all p-4 text-left group">
                   <span className="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
-                    style={{ background: '#F3F6FB', color: '#000000' }}>
+                    style={{ background: '#F3F4F6', color: '#000000' }}>
                     <SlidersHorizontal size={16} />
                   </span>
                   <div className="text-sm font-semibold text-gray-900 group-hover:text-[#000000]">KPI & Reporting</div>

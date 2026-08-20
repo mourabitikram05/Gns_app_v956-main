@@ -32,7 +32,7 @@ import java.util.List;
 public final class ExcelExporter {
 
     /** Navy GNS (identité visuelle). */
-    public static final XSSFColor NAVY = new XSSFColor(new byte[]{(byte) 0x0F, (byte) 0x1E, (byte) 0x3D}, null);
+    public static final XSSFColor NAVY = new XSSFColor(new byte[]{(byte) 0x00, (byte) 0x00, (byte) 0x00}, null);
     /** Or GNS. */
     public static final XSSFColor GOLD = new XSSFColor(new byte[]{(byte) 0xC9, (byte) 0xA2, (byte) 0x27}, null);
     /** Fond des lignes alternées. */

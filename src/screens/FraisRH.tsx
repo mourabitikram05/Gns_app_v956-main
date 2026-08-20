@@ -126,7 +126,7 @@ export default function FraisRH() {
           {/* KPI */}
           <div className="grid grid-cols-4 gap-4">
             {[
-              { label: 'Total notes', value: notes.length, color: '#000000', bg: '#EFF6FF' },
+              { label: 'Total notes', value: notes.length, color: '#000000', bg: '#F3F4F6' },
               { label: 'En attente', value: enAttente, color: '#F59E0B', bg: '#FEF3C7' },
               { label: 'En cours', value: enCours, color: '#3B82F6', bg: '#DBEAFE' },
               { label: 'Remboursées', value: notes.filter((n) => n.statut === 'REMBOURSEE').length, color: '#10B981', bg: '#D1FAE5' },

@@ -26,7 +26,7 @@ export const COMPANY_TAGLINE = 'Gestion des Ressources Humaines'
 
 /** Couleurs au format [r, g, b] pour jsPDF. */
 export const THEME = {
-  primary: [15, 30, 61] as [number, number, number],   // #000000 — bleu marine
+  primary: [0, 0, 0] as [number, number, number],   // #000000 — bleu marine
   secondary: [201, 162, 39] as [number, number, number], // #C9A227 — or
   lightBg: [247, 248, 250] as [number, number, number], // #F7F8FA
   border: [229, 231, 235] as [number, number, number],  // #E5E7EB

@@ -288,7 +288,7 @@ export default function Structures() {
                       <tr key={d.id} className="hover:bg-gray-50/70 transition-colors">
                         <td className="px-5 py-3.5">
                           <div className="flex items-center gap-2.5">
-                            <span className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#F0F4FF' }}>
+                            <span className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'F3F4F6' }}>
                               <Building2 size={15} style={{ color: '#000000' }} />
                             </span>
                             <span className="text-xs font-semibold text-gray-900">{d.nom}</span>
@@ -323,7 +323,7 @@ export default function Structures() {
                       <tr key={e.id} className="hover:bg-gray-50/70 transition-colors">
                         <td className="px-5 py-3.5">
                           <div className="flex items-center gap-2.5">
-                            <span className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#F0F4FF' }}>
+                            <span className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'F3F4F6' }}>
                               <Layers size={15} style={{ color: '#000000' }} />
                             </span>
                             <span className="text-xs font-semibold text-gray-900">{e.nom}</span>
@@ -379,7 +379,7 @@ export default function Structures() {
           <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md animate-[modalIn_0.2s_ease-out] overflow-hidden">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
-                <span className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#F0F4FF' }}>
+                <span className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'F3F4F6' }}>
                   {onglet === 'departements' ? <Building2 size={17} style={{ color: '#000000' }} /> : <Layers size={17} style={{ color: '#000000' }} />}
                 </span>
                 <div>

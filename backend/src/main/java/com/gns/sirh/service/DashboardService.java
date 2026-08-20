@@ -470,7 +470,7 @@ public class DashboardService {
 
     private String couleurAction(String action) {
         if (action == null) {
-            return "#0F1E3D";
+            return "#000000";
         }
         if (action.startsWith("VALIDATION") || action.contains("APPROUVE")) {
             return "#10B981";
@@ -481,6 +481,6 @@ public class DashboardService {
         if (action.startsWith("DEMANDE") || action.startsWith("CONNEXION")) {
             return "#C9A227";
         }
-        return "#0F1E3D";
+        return "#000000";
     }
 }
