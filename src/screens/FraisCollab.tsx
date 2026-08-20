@@ -126,7 +126,7 @@ export default function FraisCollab() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">Mes Notes de frais</h1>
         <button onClick={openCreate}
-          className="px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90" style={{ background: '#0F1E3D' }}>
+          className="px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90" style={{ background: '#000000' }}>
           + Nouvelle note de frais
         </button>
       </div>
@@ -185,7 +185,7 @@ export default function FraisCollab() {
                       </td>
                       <td className="px-5 py-3">
                         <button onClick={() => { fraisApi.detail(n.id).then(setDetail).catch((e) => toastError(e.message)) }}
-                          className="text-xs font-semibold hover:underline" style={{ color: '#0F1E3D' }}>
+                          className="text-xs font-semibold hover:underline" style={{ color: '#000000' }}>
                           Ouvrir
                         </button>
                       </td>
@@ -264,7 +264,7 @@ export default function FraisCollab() {
               <div className="flex gap-3 pt-1">
                 <button type="button" onClick={() => setShowModal(false)} className="flex-1 py-2.5 rounded-lg text-sm font-medium border border-gray-200 hover:bg-gray-50">Annuler</button>
                 <button type="submit" disabled={saving}
-                  className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2" style={{ background: '#0F1E3D' }}>
+                  className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2" style={{ background: '#000000' }}>
                   {saving && <Loader2 size={13} className="animate-spin" />} {editing ? 'Enregistrer' : 'Demander'}
                 </button>
               </div>

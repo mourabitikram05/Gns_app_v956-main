@@ -37,7 +37,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6"
-      style={{ background: '#0F1E3D' }}>
+      style={{ background: '#000000' }}>
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
@@ -98,7 +98,7 @@ export default function Login() {
               type="submit"
               disabled={loading}
               className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2"
-              style={{ background: '#0F1E3D' }}
+              style={{ background: '#000000' }}
             >
               {loading ? <Loader2 size={15} className="animate-spin" /> : <LogIn size={15} />}
               {loading ? 'Connexion...' : 'Se connecter'}

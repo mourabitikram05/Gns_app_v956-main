@@ -5,8 +5,7 @@ import {
   BarChart3, Shield, Bell, Search, ChevronDown, LogOut,
   Settings, User, Menu, X, Wrench, FileDown
 } from 'lucide-react'
-import gnsLogo from '@/imports/image.png'
-import { ImageWithFallback } from '@/components/ImageWithFallback'
+import gnsLogo from '@/imports/GNS_logo.png'
 import { useAuth } from '../context/AuthContext'
 import { notificationsApi } from '../api/modules'
 import type { NotificationItem } from '../api/types'
@@ -133,14 +132,14 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
         className="flex flex-col flex-shrink-0 transition-all duration-300 overflow-hidden"
         style={{
           width: sidebarOpen ? 240 : 64,
-          background: '#0F1E3D',
+          background: '#000000',
           borderRight: '1px solid rgba(255,255,255,0.06)'
         }}
       >
-        {/* Logo */}
+        {/* Logo
         <div className="flex items-center gap-3 px-4 py-4 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)', minHeight: 64 }}>
           <div className="flex-shrink-0 w-8 h-8 overflow-hidden rounded">
-            <ImageWithFallback src={gnsLogo} alt="GNS Technologies" className="w-full h-full object-cover" />
+            <img src={gnsLogo} alt="GNS Technologies" className="w-full h-full object-cover" />
           </div>
           {sidebarOpen && (
             <div className="overflow-hidden">
@@ -154,7 +153,24 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
           >
             {sidebarOpen ? <X size={14} color="#9CA3AF" /> : <Menu size={14} color="#9CA3AF" />}
           </button>
-        </div>
+        </div> */}
+        
+        {/* Logo officiel */}
+<div className="flex items-center gap-3 px-4 py-4 border-b flex-shrink-0" style={{ borderColor: 'rgba(255,255,255,0.08)', minHeight: 64 }}>
+  {sidebarOpen ? (
+    <img src={gnsLogo} alt="GNS Technologies" className="h-14 w-auto" />
+  ) : (
+    <div className="w-8 h-8 overflow-hidden rounded flex-shrink-0">
+      <img src={gnsLogo} alt="GNS" className="w-full h-full object-cover object-left" />
+    </div>
+  )}
+  <button
+    onClick={() => setSidebarOpen(!sidebarOpen)}
+    className="ml-auto p-1 rounded hover:bg-white/10 transition-colors"
+  >
+    {sidebarOpen ? <X size={14} color="#9CA3AF" /> : <Menu size={14} color="#9CA3AF" />}
+  </button>
+</div>
 
         {/* Nav */}
         <nav className="flex-1 overflow-y-auto py-3">
@@ -281,7 +297,7 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
                         .catch((e) => toastError(e.message))
                     }}
                     className="w-full flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-semibold border-t border-gray-100 hover:bg-gray-50 transition-colors"
-                    style={{ color: '#0F1E3D' }}
+                    style={{ color: '#000000' }}
                   >
                     <FileDown size={13} /> Exporter l'historique
                   </button>
@@ -353,7 +369,7 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
                       <button key={item.key} onClick={() => nouvelleDemande(item.key)}
                         className="w-full flex items-center gap-3 px-4 py-3 text-sm hover:bg-gray-50 transition-colors text-gray-700">
                         <span className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#F3F4F6' }}>
-                          <Icon size={15} style={{ color: '#0F1E3D' }} />
+                          <Icon size={15} style={{ color: '#000000' }} />
                         </span>
                         {item.label}
                       </button>

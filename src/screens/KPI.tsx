@@ -9,7 +9,7 @@ import { downloadKpiPdf, downloadRapportHistoryPdf } from '../services/pdf'
 const CATEGORIES = ['Effectifs', 'Congés', 'Recrutement', 'Formation', 'Finance']
 
 const CAT_COLORS: Record<string, string> = {
-  Effectifs: '#0F1E3D', Congés: '#C9A227', Recrutement: '#10B981',
+  Effectifs: '#000000', Congés: '#C9A227', Recrutement: '#10B981',
   Formation: '#F59E0B', Finance: '#6366F1',
 }
 
@@ -89,7 +89,7 @@ export default function KPI() {
         <h1 className="text-2xl font-bold text-gray-900">KPI & Reporting</h1>
         <div className="flex gap-2">
           <button onClick={rapportComplet} disabled={generating}
-            className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90 disabled:opacity-60" style={{ background: '#0F1E3D' }}>
+            className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90 disabled:opacity-60" style={{ background: '#000000' }}>
             {generating ? <Loader2 size={14} className="animate-spin" /> : <FileText size={14} />} Rapport RH complet
           </button>
           <button onClick={exportXlsx}
@@ -104,7 +104,7 @@ export default function KPI() {
         <div className="flex gap-2 flex-wrap">
           <button onClick={() => setCategorie('')}
             className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
-            style={{ background: categorie === '' ? '#0F1E3D' : '#fff', color: categorie === '' ? '#fff' : '#6B7280', border: `1px solid ${categorie === '' ? '#0F1E3D' : '#E5E7EB'}` }}>
+            style={{ background: categorie === '' ? '#000000' : '#fff', color: categorie === '' ? '#fff' : '#6B7280', border: `1px solid ${categorie === '' ? '#000000' : '#E5E7EB'}` }}>
             Toutes
           </button>
           {CATEGORIES.map((c) => (
@@ -132,7 +132,7 @@ export default function KPI() {
           <div className="grid grid-cols-4 gap-4">
             {kpis.map((k, i) => (
               <div key={i} className="bg-white rounded-xl p-4 border border-gray-100">
-                <div className="text-xl font-bold" style={{ color: CAT_COLORS[k.categorie] ?? '#0F1E3D' }}>{k.valeur}</div>
+                <div className="text-xl font-bold" style={{ color: CAT_COLORS[k.categorie] ?? '#000000' }}>{k.valeur}</div>
                 <div className="text-xs text-gray-500 mt-0.5 truncate" title={k.nom}>{k.nom}</div>
                 <div className="text-[10px] text-gray-400 mt-0.5">{k.categorie} · {k.unite}</div>
               </div>
@@ -153,7 +153,7 @@ export default function KPI() {
                   <Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #E5E7EB', fontSize: 12 }} />
                   <Bar dataKey="valeur" radius={[4, 4, 0, 0]}>
                     {chartData.map((d, i) => (
-                      <Cell key={i} fill={CAT_COLORS[d.cat] ?? '#0F1E3D'} />
+                      <Cell key={i} fill={CAT_COLORS[d.cat] ?? '#000000'} />
                     ))}
                   </Bar>
                 </BarChart>
@@ -167,7 +167,7 @@ export default function KPI() {
               <h3 className="font-semibold text-gray-900">Historique des rapports générés ({rapports.length})</h3>
               {rapports.length > 0 && (
                 <button onClick={exporterHistoriquePdf}
-                  className="text-xs font-semibold flex items-center gap-1 hover:underline" style={{ color: '#0F1E3D' }}
+                  className="text-xs font-semibold flex items-center gap-1 hover:underline" style={{ color: '#000000' }}
                   title="Exporter l'historique des rapports en PDF">
                   <Download size={12} /> Exporter PDF
                 </button>
@@ -192,7 +192,7 @@ export default function KPI() {
                     <td className="px-5 py-3 text-xs text-gray-500">{fmtDate(r.dateGeneration)}</td>
                     <td className="px-5 py-3">
                       <button onClick={() => reportingApi.rapportDownload(r.id).then(() => success('Rapport téléchargé')).catch((e) => toastError(e.message))}
-                        className="flex items-center gap-1 text-xs font-semibold hover:underline" style={{ color: '#0F1E3D' }}>
+                        className="flex items-center gap-1 text-xs font-semibold hover:underline" style={{ color: '#000000' }}>
                         <RefreshCw size={11} /> Re-télécharger
                       </button>
                     </td>

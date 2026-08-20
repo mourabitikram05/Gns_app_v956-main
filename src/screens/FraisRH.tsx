@@ -104,7 +104,7 @@ export default function FraisRH() {
             className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-60 transition-colors"
             title="Exporter les notes de frais au format PDF"
           >
-            <FileDown size={15} style={{ color: '#0F1E3D' }} /> {exportingPdf ? 'Génération...' : 'Exporter PDF'}
+            <FileDown size={15} style={{ color: '#000000' }} /> {exportingPdf ? 'Génération...' : 'Exporter PDF'}
           </button>
           <button
             onClick={() => fraisApi.exporterNotes()
@@ -112,7 +112,7 @@ export default function FraisRH() {
               .catch((e) => toastError(e.message))}
             className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
-            <FileDown size={15} style={{ color: '#0F1E3D' }} /> Exporter Excel
+            <FileDown size={15} style={{ color: '#000000' }} /> Exporter Excel
           </button>
         </div>
       </div>
@@ -126,7 +126,7 @@ export default function FraisRH() {
           {/* KPI */}
           <div className="grid grid-cols-4 gap-4">
             {[
-              { label: 'Total notes', value: notes.length, color: '#0F1E3D', bg: '#EFF6FF' },
+              { label: 'Total notes', value: notes.length, color: '#000000', bg: '#EFF6FF' },
               { label: 'En attente', value: enAttente, color: '#F59E0B', bg: '#FEF3C7' },
               { label: 'En cours', value: enCours, color: '#3B82F6', bg: '#DBEAFE' },
               { label: 'Remboursées', value: notes.filter((n) => n.statut === 'REMBOURSEE').length, color: '#10B981', bg: '#D1FAE5' },
@@ -171,7 +171,7 @@ export default function FraisRH() {
                       <td className="px-5 py-3 text-xs font-mono text-gray-400">{n.reference}</td>
                       <td className="px-5 py-3">
                         <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-full bg-[#0F1E3D] text-white flex items-center justify-center text-[10px] font-bold">{n.employeInitiales}</div>
+                          <div className="w-7 h-7 rounded-full bg-[#000000] text-white flex items-center justify-center text-[10px] font-bold">{n.employeInitiales}</div>
                           <span className="text-xs font-medium text-gray-900">{n.employeNom}</span>
                         </div>
                       </td>
@@ -246,7 +246,7 @@ export default function FraisRH() {
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ background: '#0F1E3D' }}>
+                <div className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ background: '#000000' }}>
                   {detail.employeInitiales}
                 </div>
                 <div>
@@ -311,7 +311,7 @@ export default function FraisRH() {
                 ) : (detail.justificatifs ?? []).map((url, i) => (
                   <button key={i} onClick={() => downloadJustif(url)}
                     className="w-full flex items-center gap-2 text-xs px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-50 mb-1.5">
-                    <Eye size={11} style={{ color: '#0F1E3D' }} /> {url.split('/').pop()}
+                    <Eye size={11} style={{ color: '#000000' }} /> {url.split('/').pop()}
                   </button>
                 ))}
                 {(detail.justificatifs ?? []).length > 0 && (

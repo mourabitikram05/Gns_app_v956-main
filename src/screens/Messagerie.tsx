@@ -79,13 +79,13 @@ export default function Messagerie() {
                 {conv.isGroup ? (
                   <div className="relative w-9 h-9">
                     <div className="absolute w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                      style={{ background: '#0F1E3D', top: 0, left: 0 }}>{conv.avatars![0]}</div>
+                      style={{ background: '#000000', top: 0, left: 0 }}>{conv.avatars![0]}</div>
                     <div className="absolute w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white border border-white"
                       style={{ background: '#C9A227', top: 5, left: 8 }}>{conv.avatars![1]}</div>
                   </div>
                 ) : (
                   <div className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                    style={{ background: '#0F1E3D' }}>{conv.avatar}</div>
+                    style={{ background: '#000000' }}>{conv.avatar}</div>
                 )}
                 {conv.unread > 0 && (
                   <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-white text-xs flex items-center justify-center font-bold"
@@ -112,7 +112,7 @@ export default function Messagerie() {
         {/* Header */}
         <div className="flex items-center gap-3 px-5 py-3.5 border-b border-gray-100 flex-shrink-0">
           <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white"
-            style={{ background: '#0F1E3D' }}>{conv.isGroup ? conv.avatars![0] : conv.avatar}</div>
+            style={{ background: '#000000' }}>{conv.isGroup ? conv.avatars![0] : conv.avatar}</div>
           <div>
             <div className="font-semibold text-sm text-gray-900">{conv.name}</div>
             <div className="text-xs text-gray-400">{conv.isGroup ? '5 participants · En ligne' : 'En ligne'}</div>
@@ -143,7 +143,7 @@ export default function Messagerie() {
             <div key={i} className={`flex ${msg.isMe ? 'justify-end' : 'justify-start'} gap-2`}>
               {!msg.isMe && (
                 <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0 mt-0.5"
-                  style={{ background: '#0F1E3D' }}>
+                  style={{ background: '#000000' }}>
                   {msg.sender.charAt(0)}
                 </div>
               )}
@@ -153,7 +153,7 @@ export default function Messagerie() {
                 )}
                 <div className="px-3.5 py-2.5 rounded-2xl text-sm"
                   style={{
-                    background: msg.isMe ? '#0F1E3D' : '#F3F4F6',
+                    background: msg.isMe ? '#000000' : '#F3F4F6',
                     color: msg.isMe ? '#fff' : '#111827',
                     borderRadius: msg.isMe ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
                   }}>
@@ -183,7 +183,7 @@ export default function Messagerie() {
           <button
             onClick={sendMsg}
             className="w-9 h-9 rounded-lg flex items-center justify-center text-white transition-all hover:opacity-90"
-            style={{ background: message.trim() ? '#0F1E3D' : '#E5E7EB' }}
+            style={{ background: message.trim() ? '#000000' : '#E5E7EB' }}
           >
             <Send size={15} style={{ color: message.trim() ? '#fff' : '#9CA3AF' }} />
           </button>

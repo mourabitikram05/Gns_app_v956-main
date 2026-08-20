@@ -2,7 +2,7 @@
  * Service PDF centralisé — utilitaires communs.
  *
  * Tous les générateurs PDF de l'application reposent sur ce module :
- *  - thème de l'application (bleu marine #0F1E3D, or #C9A227) ;
+ *  - thème de l'application (bleu marine #000000, or #C9A227) ;
  *  - en-tête professionnel (logo, nom de l'entreprise, titre, date) ;
  *  - pied de page (application, date, numéro de page) ;
  *  - tableaux multi-pages avec sauts de page automatiques ;
@@ -26,7 +26,7 @@ export const COMPANY_TAGLINE = 'Gestion des Ressources Humaines'
 
 /** Couleurs au format [r, g, b] pour jsPDF. */
 export const THEME = {
-  primary: [15, 30, 61] as [number, number, number],   // #0F1E3D — bleu marine
+  primary: [15, 30, 61] as [number, number, number],   // #000000 — bleu marine
   secondary: [201, 162, 39] as [number, number, number], // #C9A227 — or
   lightBg: [247, 248, 250] as [number, number, number], // #F7F8FA
   border: [229, 231, 235] as [number, number, number],  // #E5E7EB

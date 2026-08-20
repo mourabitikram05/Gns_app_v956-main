@@ -74,7 +74,7 @@ export function useToasts() {
 export function Spinner({ label = 'Chargement...' }: { label?: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-14 gap-2">
-      <Loader2 size={22} className="animate-spin" style={{ color: '#0F1E3D' }} />
+      <Loader2 size={22} className="animate-spin" style={{ color: '#000000' }} />
       <span className="text-xs" style={{ color: '#9CA3AF' }}>{label}</span>
     </div>
   )
@@ -102,7 +102,7 @@ export function ErrorBlock({ message, onRetry }: { message: string; onRetry?: ()
 /* Helpers                                                             */
 /* ------------------------------------------------------------------ */
 
-export const AVATAR_COLORS = ['#0F1E3D', '#C9A227', '#10B981', '#EF4444', '#8B5CF6', '#F59E0B', '#3B82F6', '#14B8A6']
+export const AVATAR_COLORS = ['#000000', '#C9A227', '#10B981', '#EF4444', '#8B5CF6', '#F59E0B', '#3B82F6', '#14B8A6']
 
 /** Couleur d'avatar déterministe à partir d'un id (stable entre rendus). */
 export function avatarColor(id: number): string {
@@ -225,7 +225,7 @@ export function Pagination({ page, totalPages, onChange, totalItems, itemLabel }
                   ? 'text-white'
                   : 'text-gray-600 hover:bg-gray-100'
               }`}
-              style={p === page ? { background: '#0F1E3D' } : undefined}
+              style={p === page ? { background: '#000000' } : undefined}
               aria-current={p === page ? 'page' : undefined}
             >
               {p}

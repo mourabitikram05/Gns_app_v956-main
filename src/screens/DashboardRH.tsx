@@ -23,17 +23,17 @@ import {
 } from '../services/pdf'
 
 const KPI_STYLES: Record<string, { icon: typeof Users; color: string }> = {
-  effectif: { icon: Users, color: '#0F1E3D' },
+  effectif: { icon: Users, color: '#000000' },
   recrutements: { icon: UserPlus, color: '#C9A227' },
   absenteisme: { icon: TrendingDown, color: '#EF4444' },
   engagement: { icon: Heart, color: '#10B981' },
   conges_attente: { icon: Clock, color: '#F59E0B' },
   absences_jour: { icon: AlertCircle, color: '#EF4444' },
-  postes_ouverts: { icon: Briefcase, color: '#0F1E3D' },
+  postes_ouverts: { icon: Briefcase, color: '#000000' },
   formations: { icon: GraduationCap, color: '#C9A227' },
 }
 
-const DEPT_COLORS = ['#0F1E3D', '#C9A227', '#10B981', '#F59E0B', '#6366F1', '#14B8A6', '#8B5CF6', '#EF4444']
+const DEPT_COLORS = ['#000000', '#C9A227', '#10B981', '#F59E0B', '#6366F1', '#14B8A6', '#8B5CF6', '#EF4444']
 
 const MOIS_COURTS = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc']
 const MOIS_LONGS = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
@@ -380,7 +380,7 @@ export default function DashboardRH() {
             onClick={exporterRapportPdf}
             disabled={exportingRapport || rapportLoading}
             className="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-colors hover:opacity-90 disabled:opacity-60 flex items-center gap-1.5"
-            style={{ background: '#0F1E3D' }}>
+            style={{ background: '#000000' }}>
             {exportingRapport ? <Loader2 size={14} className="animate-spin" /> : <FileText size={14} />} Rapport mensuel PDF
           </button>
         </div>
@@ -408,12 +408,12 @@ export default function DashboardRH() {
             </select>
             <button onClick={() => { genererRapport().catch((e) => toastError(e.message)) }} disabled={rapportLoading}
               className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-lg border border-gray-200 hover:bg-gray-50 disabled:opacity-60">
-              {rapportLoading ? <Loader2 size={14} className="animate-spin" /> : <FileText size={14} style={{ color: '#0F1E3D' }} />}
+              {rapportLoading ? <Loader2 size={14} className="animate-spin" /> : <FileText size={14} style={{ color: '#000000' }} />}
               Générer le rapport
             </button>
             <button onClick={exporterRapportPdf} disabled={exportingRapport || rapportLoading}
               className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90 disabled:opacity-60"
-              style={{ background: '#0F1E3D' }}>
+              style={{ background: '#000000' }}>
               {exportingRapport ? <Loader2 size={14} className="animate-spin" /> : <FileDown size={14} />} Exporter PDF
             </button>
           </div>
@@ -449,7 +449,7 @@ export default function DashboardRH() {
       {/* KPI Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {kpis.map((kpi) => {
-          const style = KPI_STYLES[kpi.key] ?? { icon: Users, color: '#0F1E3D' }
+          const style = KPI_STYLES[kpi.key] ?? { icon: Users, color: '#000000' }
           const Icon = style.icon
           return (
             <div key={kpi.key} className="bg-white rounded-xl p-4 border border-gray-200/80 shadow-sm hover:shadow-md transition-shadow">
@@ -554,7 +554,7 @@ export default function DashboardRH() {
               )}
               <button onClick={submitSondage} disabled={sondageSaving}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60"
-                style={{ background: '#0F1E3D' }}>
+                style={{ background: '#000000' }}>
                 {sondageSaving && <Loader2 size={13} className="animate-spin" />}
                 {editingSondage ? 'Enregistrer les modifications' : 'Publier le sondage'}
               </button>
@@ -573,7 +573,7 @@ export default function DashboardRH() {
               <XAxis dataKey="mois" tick={{ fontSize: 12, fill: '#9CA3AF' }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fontSize: 12, fill: '#9CA3AF' }} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ borderRadius: 8, border: '1px solid #E5E7EB', fontSize: 12 }} />
-              <Bar dataKey="jours" fill="#0F1E3D" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="jours" fill="#000000" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -607,7 +607,7 @@ export default function DashboardRH() {
               </span>
               {actions.length > 0 && (
                 <button onClick={exporterAlertesPdf}
-                  className="text-[11px] font-semibold flex items-center gap-1 hover:underline" style={{ color: '#0F1E3D' }}
+                  className="text-[11px] font-semibold flex items-center gap-1 hover:underline" style={{ color: '#000000' }}
                   title="Exporter les alertes RH en PDF">
                   <FileDown size={11} /> PDF
                 </button>
@@ -621,7 +621,7 @@ export default function DashboardRH() {
             {actions.map((action) => (
               <div key={action.demandeId} className="flex items-center gap-3 px-5 py-3">
                 <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
-                  style={{ background: '#0F1E3D' }}>
+                  style={{ background: '#000000' }}>
                   {action.initiales}
                 </div>
                 <div className="flex-1 min-w-0">

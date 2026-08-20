@@ -163,12 +163,12 @@ export default function Structures() {
             className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg border border-gray-200 hover:bg-gray-50 transition-all"
             title="Exporter les départements et équipes au format PDF"
           >
-            <FileDown size={15} style={{ color: '#0F1E3D' }} /> Exporter PDF
+            <FileDown size={15} style={{ color: '#000000' }} /> Exporter PDF
           </button>
           <button
             onClick={() => ouvrirCreation(onglet)}
             className="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-white rounded-lg shadow-sm hover:opacity-95 active:scale-[0.98] transition-all"
-            style={{ background: '#0F1E3D', boxShadow: '0 4px 12px -4px rgba(15,30,61,0.4)' }}
+            style={{ background: '#000000', boxShadow: '0 4px 12px -4px rgba(15,30,61,0.4)' }}
           >
             <Plus size={16} />
             {onglet === 'departements' ? 'Ajouter un département' : 'Ajouter une équipe'}
@@ -192,7 +192,7 @@ export default function Structures() {
                 <button key={o.key} onClick={() => setOnglet(o.key)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
                     actif ? 'text-white' : 'text-gray-500 hover:text-gray-800'}`}
-                  style={actif ? { background: '#0F1E3D' } : undefined}>
+                  style={actif ? { background: '#000000' } : undefined}>
                   <Icon size={15} />
                   {o.label}
                   <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${actif ? 'text-white/90' : 'text-gray-400'}`}
@@ -208,7 +208,7 @@ export default function Structures() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="bg-white rounded-xl border border-gray-200/80 p-4 flex items-center gap-3.5 shadow-sm">
               <div className="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#EEF2FF' }}>
-                {onglet === 'departements' ? <Building2 size={20} style={{ color: '#0F1E3D' }} /> : <Layers size={20} style={{ color: '#0F1E3D' }} />}
+                {onglet === 'departements' ? <Building2 size={20} style={{ color: '#000000' }} /> : <Layers size={20} style={{ color: '#000000' }} />}
               </div>
               <div>
                 <div className="text-2xl font-bold text-gray-900 leading-none">{ongletInfo.total}</div>
@@ -243,7 +243,7 @@ export default function Structures() {
           <section className="bg-white rounded-xl border border-gray-200/80 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2.5">
               <span className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#F3F4F6' }}>
-                {onglet === 'departements' ? <Building2 size={15} style={{ color: '#0F1E3D' }} /> : <Layers size={15} style={{ color: '#0F1E3D' }} />}
+                {onglet === 'departements' ? <Building2 size={15} style={{ color: '#000000' }} /> : <Layers size={15} style={{ color: '#000000' }} />}
               </span>
               <h2 className="font-semibold text-gray-900">Liste des {ongletInfo.titre.toLowerCase()}</h2>
               <span className="text-xs text-gray-400 ml-auto hidden sm:block">{filtrees.length} élément{filtrees.length > 1 ? 's' : ''}</span>
@@ -289,7 +289,7 @@ export default function Structures() {
                         <td className="px-5 py-3.5">
                           <div className="flex items-center gap-2.5">
                             <span className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#F0F4FF' }}>
-                              <Building2 size={15} style={{ color: '#0F1E3D' }} />
+                              <Building2 size={15} style={{ color: '#000000' }} />
                             </span>
                             <span className="text-xs font-semibold text-gray-900">{d.nom}</span>
                           </div>
@@ -324,7 +324,7 @@ export default function Structures() {
                         <td className="px-5 py-3.5">
                           <div className="flex items-center gap-2.5">
                             <span className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#F0F4FF' }}>
-                              <Layers size={15} style={{ color: '#0F1E3D' }} />
+                              <Layers size={15} style={{ color: '#000000' }} />
                             </span>
                             <span className="text-xs font-semibold text-gray-900">{e.nom}</span>
                           </div>
@@ -380,7 +380,7 @@ export default function Structures() {
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
                 <span className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#F0F4FF' }}>
-                  {onglet === 'departements' ? <Building2 size={17} style={{ color: '#0F1E3D' }} /> : <Layers size={17} style={{ color: '#0F1E3D' }} />}
+                  {onglet === 'departements' ? <Building2 size={17} style={{ color: '#000000' }} /> : <Layers size={17} style={{ color: '#000000' }} />}
                 </span>
                 <div>
                   <h3 className="font-semibold text-gray-900 leading-tight">
@@ -435,7 +435,7 @@ export default function Structures() {
                 </button>
                 <button onClick={submit} disabled={saving}
                   className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-95 disabled:opacity-50 disabled:pointer-events-none flex items-center justify-center gap-2 transition-all"
-                  style={{ background: '#0F1E3D', boxShadow: '0 4px 12px -4px rgba(15,30,61,0.4)' }}>
+                  style={{ background: '#000000', boxShadow: '0 4px 12px -4px rgba(15,30,61,0.4)' }}>
                   {saving && <Loader2 size={14} className="animate-spin" />}
                   {modal.mode === 'creer' ? 'Créer' : 'Enregistrer'}
                 </button>

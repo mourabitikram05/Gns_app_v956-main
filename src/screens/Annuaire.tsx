@@ -261,7 +261,7 @@ export default function Annuaire() {
             className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-gray-700 border border-gray-200 transition-all hover:bg-gray-50 disabled:opacity-60"
             title="Exporter l'annuaire au format PDF"
           >
-            <FileDown size={15} style={{ color: '#0F1E3D' }} /> {exportingPdf ? 'Génération...' : 'Exporter PDF'}
+            <FileDown size={15} style={{ color: '#000000' }} /> {exportingPdf ? 'Génération...' : 'Exporter PDF'}
           </button>
           <button
             onClick={() => annuaireApi.exportExcel()
@@ -269,13 +269,13 @@ export default function Annuaire() {
               .catch((e) => toastError(e.message))}
             className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-gray-700 border border-gray-200 transition-all hover:bg-gray-50"
           >
-            <FileDown size={15} style={{ color: '#0F1E3D' }} /> Exporter Excel
+            <FileDown size={15} style={{ color: '#000000' }} /> Exporter Excel
           </button>
           {isRh && (
             <button
               onClick={openCreate}
               className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90"
-              style={{ background: '#0F1E3D', boxShadow: '0 4px 12px -4px rgba(15,30,61,0.4)' }}
+              style={{ background: '#000000', boxShadow: '0 4px 12px -4px rgba(15,30,61,0.4)' }}
             >
               <Plus size={15} /> Ajouter
             </button>
@@ -294,9 +294,9 @@ export default function Annuaire() {
           <button key="Tous" onClick={() => setDept(null)}
             className="px-3 py-2 rounded-lg text-xs font-semibold transition-all"
             style={{
-              background: dept === null ? '#0F1E3D' : '#fff',
+              background: dept === null ? '#000000' : '#fff',
               color: dept === null ? '#fff' : '#6B7280',
-              border: `1px solid ${dept === null ? '#0F1E3D' : '#E5E7EB'}`,
+              border: `1px solid ${dept === null ? '#000000' : '#E5E7EB'}`,
             }}>
             Tous
           </button>
@@ -304,9 +304,9 @@ export default function Annuaire() {
             <button key={d.id} onClick={() => setDept(dept === d.nom ? null : d.nom)}
               className="px-3 py-2 rounded-lg text-xs font-semibold transition-all"
               style={{
-                background: dept === d.nom ? '#0F1E3D' : '#fff',
+                background: dept === d.nom ? '#000000' : '#fff',
                 color: dept === d.nom ? '#fff' : '#6B7280',
-                border: `1px solid ${dept === d.nom ? '#0F1E3D' : '#E5E7EB'}`,
+                border: `1px solid ${dept === d.nom ? '#000000' : '#E5E7EB'}`,
               }}>
               {d.nom}
             </button>
@@ -328,7 +328,7 @@ export default function Annuaire() {
           {items.map((emp) => (
             <div key={emp.id} onClick={() => setSelected(selected?.id === emp.id ? null : emp)}
               className="bg-white rounded-xl p-5 border border-gray-100 hover:shadow-md transition-all cursor-pointer"
-              style={{ borderColor: selected?.id === emp.id ? '#0F1E3D' : '#E5E7EB' }}>
+              style={{ borderColor: selected?.id === emp.id ? '#000000' : '#E5E7EB' }}>
               <div className="flex flex-col items-center text-center">
                 <div className="w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold text-white mb-3"
                   style={{ background: avatarColor(emp.id) }}>
@@ -396,7 +396,7 @@ export default function Annuaire() {
                     style={{ background: avatarColor(detail.id) }}>{detail.initiales}</div>
                   <h2 className="font-bold text-gray-900 text-lg">{detail.nomComplet}</h2>
                   <p className="text-sm text-gray-500">{detail.poste ?? '—'}</p>
-                  <span className="text-xs px-2 py-1 rounded-full font-medium mt-1 inline-block" style={{ background: '#F0F4FF', color: '#0F1E3D' }}>
+                  <span className="text-xs px-2 py-1 rounded-full font-medium mt-1 inline-block" style={{ background: '#F0F4FF', color: '#000000' }}>
                     {detail.departement ?? '—'}
                   </span>
                 </div>
@@ -458,7 +458,7 @@ export default function Annuaire() {
                 </div>
                 <div className="flex gap-2 mt-4">
                   <button onClick={() => setShowFullProfile(true)}
-                    className="flex-1 py-2 rounded-lg text-xs font-semibold text-white hover:opacity-90" style={{ background: '#0F1E3D' }}>
+                    className="flex-1 py-2 rounded-lg text-xs font-semibold text-white hover:opacity-90" style={{ background: '#000000' }}>
                     Profil complet
                   </button>
                 </div>
@@ -583,7 +583,7 @@ export default function Annuaire() {
                 </button>
                 <button type="submit" disabled={saving}
                   className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2"
-                  style={{ background: '#0F1E3D' }}>
+                  style={{ background: '#000000' }}>
                   <Save size={14} /> {saving ? 'Enregistrement...' : 'Enregistrer'}
                 </button>
               </div>
@@ -625,7 +625,7 @@ export default function Annuaire() {
                 )
               })}
               <button onClick={() => setShowFullProfile(false)}
-                className="w-full py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90" style={{ background: '#0F1E3D' }}>
+                className="w-full py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90" style={{ background: '#000000' }}>
                 Fermer
               </button>
             </div>
@@ -659,9 +659,9 @@ export default function Annuaire() {
                       })}
                       className="text-xs px-3 py-1.5 rounded-full font-medium transition-colors disabled:opacity-50"
                       style={{
-                        background: checked ? '#0F1E3D' : '#F3F4F6',
+                        background: checked ? '#000000' : '#F3F4F6',
                         color: checked ? '#fff' : '#374151',
-                        border: `1px solid ${checked ? '#0F1E3D' : '#E5E7EB'}`,
+                        border: `1px solid ${checked ? '#000000' : '#E5E7EB'}`,
                       }}>
                       {c.nom}
                     </button>
@@ -669,7 +669,7 @@ export default function Annuaire() {
                 })}
               </div>
               <button onClick={saveSkills}
-                className="w-full mt-4 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90" style={{ background: '#0F1E3D' }}>
+                className="w-full mt-4 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90" style={{ background: '#000000' }}>
                 Enregistrer les compétences
               </button>
             </div>

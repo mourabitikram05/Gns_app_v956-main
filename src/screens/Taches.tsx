@@ -70,7 +70,7 @@ export default function Taches() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-gray-900">Tâches</h1>
         <button onClick={() => setShowModal(true)}
-          className="px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90" style={{ background: '#0F1E3D' }}>
+          className="px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90" style={{ background: '#000000' }}>
           + Nouvelle tâche
         </button>
       </div>
@@ -81,9 +81,9 @@ export default function Taches() {
           <button key={cat} onClick={() => setCategory(cat)}
             className="px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0"
             style={{
-              background: category === cat ? '#0F1E3D' : '#fff',
+              background: category === cat ? '#000000' : '#fff',
               color: category === cat ? '#fff' : '#6B7280',
-              border: `1px solid ${category === cat ? '#0F1E3D' : '#E5E7EB'}`,
+              border: `1px solid ${category === cat ? '#000000' : '#E5E7EB'}`,
             }}>
             {cat}
           </button>
@@ -137,7 +137,7 @@ export default function Taches() {
                           </div>
                         )}
                         <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                          style={{ background: '#0F1E3D' }}>{task.avatar}</div>
+                          style={{ background: '#000000' }}>{task.avatar}</div>
                       </div>
                     </div>
                   </div>
@@ -181,7 +181,7 @@ export default function Taches() {
             </div>
             <div className="flex gap-3 px-6 pb-6">
               <button onClick={() => setShowModal(false)} className="flex-1 py-2.5 rounded-lg text-sm font-medium border border-gray-200 hover:bg-gray-50">Annuler</button>
-              <button onClick={addTask} className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90" style={{ background: '#0F1E3D' }}>Créer</button>
+              <button onClick={addTask} className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90" style={{ background: '#000000' }}>Créer</button>
             </div>
           </div>
         </div>

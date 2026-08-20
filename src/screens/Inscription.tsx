@@ -38,7 +38,7 @@ export default function Inscription() {
   /* ---------- Écran de confirmation : compte en attente de validation ---------- */
   if (createdEmail) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6" style={{ background: '#0F1E3D' }}>
+      <div className="min-h-screen flex items-center justify-center p-6" style={{ background: '#000000' }}>
         <div className="w-full max-w-md">
           <div className="flex flex-col items-center mb-8">
             <div className="w-16 h-16 rounded-2xl overflow-hidden mb-3 shadow-lg">
@@ -78,7 +78,7 @@ export default function Inscription() {
 
             <button onClick={goLogin}
               className="mt-6 w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-bold text-white transition-all hover:opacity-90"
-              style={{ background: '#0F1E3D' }}>
+              style={{ background: '#000000' }}>
               <ArrowLeft size={15} /> Retour à la connexion
             </button>
           </div>
@@ -93,7 +93,7 @@ export default function Inscription() {
 
   /* ---------- Formulaire d'inscription ---------- */
   return (
-    <div className="min-h-screen flex items-center justify-center p-6" style={{ background: '#0F1E3D' }}>
+    <div className="min-h-screen flex items-center justify-center p-6" style={{ background: '#000000' }}>
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">

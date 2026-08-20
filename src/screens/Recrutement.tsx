@@ -11,7 +11,7 @@ import {
 } from '../services/pdf'
 
 const COLUMNS: { key: Candidature['etape']; label: string; color: string }[] = [
-  { key: 'BOITE_RECEPTION', label: 'Boîte réception', color: '#0F1E3D' },
+  { key: 'BOITE_RECEPTION', label: 'Boîte réception', color: '#000000' },
   { key: 'BROUILLON', label: 'Brouillon', color: '#6B7280' },
   { key: 'ENTRETIEN_TEL', label: 'Entretien tél.', color: '#F59E0B' },
   { key: 'ENTRETIEN_PHYSIQUE', label: 'Entretien physique', color: '#C9A227' },
@@ -343,20 +343,20 @@ export default function Recrutement() {
           <button onClick={exporterPdf} disabled={exportingPdf}
             className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-60 transition-colors"
             title="Exporter le rapport de recrutement (offres + candidatures) au format PDF">
-            <FileDown size={14} style={{ color: '#0F1E3D' }} /> {exportingPdf ? 'Génération...' : 'Rapport PDF'}
+            <FileDown size={14} style={{ color: '#000000' }} /> {exportingPdf ? 'Génération...' : 'Rapport PDF'}
           </button>
           <button onClick={() => recrutementApi.exporterCandidatures()
             .then(() => success('Export Excel téléchargé'))
             .catch((e) => toastError(e.message))}
             className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-            <Download size={14} style={{ color: '#0F1E3D' }} /> Export Excel
+            <Download size={14} style={{ color: '#000000' }} /> Export Excel
           </button>
           <button onClick={() => setShowCandidat(true)} disabled={!offreId}
             className="flex items-center gap-1.5 px-4 py-2 text-sm font-medium border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-50">
             <Plus size={14} /> Ajouter un candidat
           </button>
           <button onClick={ouvrirCreationOffre}
-            className="px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90" style={{ background: '#0F1E3D' }}>
+            className="px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90" style={{ background: '#000000' }}>
             + Publier une offre
           </button>
         </div>
@@ -365,11 +365,11 @@ export default function Recrutement() {
       {/* Onglets */}
       <div className="flex items-center gap-1 border-b border-gray-100">
         <button onClick={() => setTab('kanban')}
-          className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-semibold border-b-2 transition-colors ${tab === 'kanban' ? 'border-[#0F1E3D] text-[#0F1E3D]' : 'border-transparent text-gray-400 hover:text-gray-600'}`}>
+          className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-semibold border-b-2 transition-colors ${tab === 'kanban' ? 'border-[#000000] text-[#000000]' : 'border-transparent text-gray-400 hover:text-gray-600'}`}>
           <KanbanSquare size={15} /> Kanban
         </button>
         <button onClick={() => setTab('candidats')}
-          className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-semibold border-b-2 transition-colors ${tab === 'candidats' ? 'border-[#0F1E3D] text-[#0F1E3D]' : 'border-transparent text-gray-400 hover:text-gray-600'}`}>
+          className={`flex items-center gap-1.5 px-4 py-2.5 text-sm font-semibold border-b-2 transition-colors ${tab === 'candidats' ? 'border-[#000000] text-[#000000]' : 'border-transparent text-gray-400 hover:text-gray-600'}`}>
           <Users size={15} /> Candidats ({candidats.length})
         </button>
       </div>
@@ -387,7 +387,7 @@ export default function Recrutement() {
             <button onClick={exporterOffresPdf}
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold border border-gray-200 rounded-lg hover:bg-gray-50"
               title="Exporter les offres d'emploi en PDF">
-              <FileDown size={13} style={{ color: '#0F1E3D' }} /> PDF
+              <FileDown size={13} style={{ color: '#000000' }} /> PDF
             </button>
           </div>
         </div>
@@ -402,7 +402,7 @@ export default function Recrutement() {
             const selected = offreId === o.id
             return (
               <div key={o.id}
-                className={`rounded-xl border p-3.5 transition-all ${selected ? 'ring-2 ring-[#0F1E3D]/20 border-[#0F1E3D]/40' : 'border-gray-100 hover:shadow-md'}`}
+                className={`rounded-xl border p-3.5 transition-all ${selected ? 'ring-2 ring-[#000000]/20 border-[#000000]/40' : 'border-gray-100 hover:shadow-md'}`}
                 style={{ background: selected ? '#F7F8FA' : '#fff' }}>
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
@@ -426,7 +426,7 @@ export default function Recrutement() {
                   <div className="flex items-center gap-1">
                     <button onClick={() => { setOffreId(o.id); setTab('kanban') }}
                       className="w-7 h-7 rounded-lg flex items-center justify-center hover:bg-gray-100" title="Voir le kanban"
-                      style={{ color: '#0F1E3D' }}><Eye size={13} /></button>
+                      style={{ color: '#000000' }}><Eye size={13} /></button>
                     <button onClick={() => ouvrirEditionOffre(o)}
                       className="w-7 h-7 rounded-lg flex items-center justify-center hover:bg-gray-100" title="Modifier"
                       style={{ color: '#C9A227' }}><Pencil size={13} /></button>
@@ -488,7 +488,7 @@ export default function Recrutement() {
                           className="bg-white rounded-lg p-3 border border-gray-100 shadow-sm cursor-pointer hover:shadow-md transition-shadow"
                           style={{ borderLeft: `3px solid ${col.color}` }}>
                           <div className="flex items-center gap-2 mb-2">
-                            <div className="w-8 h-8 rounded-full bg-[#0F1E3D] text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full bg-[#000000] text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
                               {c.initiales}
                             </div>
                             <div className="min-w-0">
@@ -525,7 +525,7 @@ export default function Recrutement() {
             <button onClick={exporterCandidatsPdf}
               className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold border border-gray-200 rounded-lg hover:bg-gray-50"
               title="Exporter les candidats en PDF">
-              <FileDown size={13} style={{ color: '#0F1E3D' }} /> Exporter PDF
+              <FileDown size={13} style={{ color: '#000000' }} /> Exporter PDF
             </button>
           </div>
 
@@ -554,7 +554,7 @@ export default function Recrutement() {
                     <tr key={k.id} className="hover:bg-gray-50/60">
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2.5">
-                          <div className="w-8 h-8 rounded-full bg-[#0F1E3D] text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
+                          <div className="w-8 h-8 rounded-full bg-[#000000] text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
                             {k.initiales}
                           </div>
                           <span className="font-medium text-gray-900">{k.nomComplet}</span>
@@ -565,7 +565,7 @@ export default function Recrutement() {
                       <td className="px-4 py-3 text-gray-600 max-w-[180px] truncate">{k.offres || '—'}</td>
                       <td className="px-4 py-3 text-center">
                         <span className="inline-flex items-center justify-center min-w-[24px] px-1.5 py-0.5 text-xs font-bold rounded-full"
-                          style={{ background: '#0F1E3D14', color: '#0F1E3D' }}>{k.nbCandidatures}</span>
+                          style={{ background: '#00000014', color: '#000000' }}>{k.nbCandidatures}</span>
                       </td>
                       <td className="px-4 py-3 text-center">
                         {k.cvDisponible
@@ -633,7 +633,7 @@ export default function Recrutement() {
               </div>
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => { setShowOffre(false); setEditingOffre(null) }} className="flex-1 py-2.5 rounded-lg text-sm font-medium border border-gray-200 hover:bg-gray-50">Annuler</button>
-                <button type="submit" disabled={saving} className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60" style={{ background: '#0F1E3D' }}>
+                <button type="submit" disabled={saving} className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60" style={{ background: '#000000' }}>
                   {saving ? 'Enregistrement...' : (editingOffre ? 'Enregistrer' : 'Publier')}
                 </button>
               </div>
@@ -694,7 +694,7 @@ export default function Recrutement() {
               </div>
               <div className="flex gap-3 pt-1">
                 <button type="button" onClick={() => setShowCandidat(false)} className="flex-1 py-2.5 rounded-lg text-sm font-medium border border-gray-200 hover:bg-gray-50">Annuler</button>
-                <button type="submit" disabled={saving} className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60" style={{ background: '#0F1E3D' }}>
+                <button type="submit" disabled={saving} className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60" style={{ background: '#000000' }}>
                   {saving ? 'Enregistrement...' : 'Enregistrer'}
                 </button>
               </div>
@@ -743,7 +743,7 @@ export default function Recrutement() {
               </div>
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setEditingCandidat(null)} className="flex-1 py-2.5 rounded-lg text-sm font-medium border border-gray-200 hover:bg-gray-50">Annuler</button>
-                <button type="submit" disabled={saving} className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60" style={{ background: '#0F1E3D' }}>
+                <button type="submit" disabled={saving} className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60" style={{ background: '#000000' }}>
                   {saving ? 'Enregistrement...' : 'Enregistrer'}
                 </button>
               </div>
@@ -758,7 +758,7 @@ export default function Recrutement() {
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#0F1E3D] text-white flex items-center justify-center font-bold">{detail.initiales}</div>
+                <div className="w-10 h-10 rounded-full bg-[#000000] text-white flex items-center justify-center font-bold">{detail.initiales}</div>
                 <div>
                   <div className="font-semibold text-gray-900">{detail.nomComplet}</div>
                   <div className="text-xs text-gray-400">{detail.offreTitre}</div>

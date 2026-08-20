@@ -164,7 +164,7 @@ export default function DocsRH() {
         <button
           onClick={() => window.dispatchEvent(new CustomEvent('gns:navigate', { detail: 'docs-collab' }))}
           className="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-white rounded-lg shadow-sm hover:opacity-95 active:scale-[0.98] transition-all"
-          style={{ background: '#0F1E3D', boxShadow: '0 4px 12px -4px rgba(15,30,61,0.4)' }}
+          style={{ background: '#000000', boxShadow: '0 4px 12px -4px rgba(15,30,61,0.4)' }}
         >
           <Plus size={16} />
           Demander un document
@@ -199,7 +199,7 @@ export default function DocsRH() {
             </div>
             <div className="bg-white rounded-xl border border-gray-200/80 p-4 flex items-center gap-3.5 shadow-sm">
               <div className="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#EEF2FF' }}>
-                <FileText size={20} style={{ color: '#0F1E3D' }} />
+                <FileText size={20} style={{ color: '#000000' }} />
               </div>
               <div>
                 <div className="text-2xl font-bold text-gray-900 leading-none">{stats.total}</div>
@@ -212,7 +212,7 @@ export default function DocsRH() {
           <section className="bg-white rounded-xl border border-gray-200/80 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2.5">
               <span className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#F3F4F6' }}>
-                <Inbox size={15} style={{ color: '#0F1E3D' }} />
+                <Inbox size={15} style={{ color: '#000000' }} />
               </span>
               <h2 className="font-semibold text-gray-900">Demandes de documents</h2>
               <span className="text-xs text-gray-400 ml-auto hidden sm:block">{filtered.length} demande{filtered.length > 1 ? 's' : ''}</span>
@@ -231,7 +231,7 @@ export default function DocsRH() {
                   <button key={s.key || 'all'} onClick={() => setFilterStatut(s.key)}
                     className={`px-3 py-1.5 text-xs font-semibold rounded-md whitespace-nowrap transition-colors ${
                       filterStatut === s.key ? 'text-white' : 'text-gray-500 hover:text-gray-800'}`}
-                    style={filterStatut === s.key ? { background: '#0F1E3D' } : undefined}>
+                    style={filterStatut === s.key ? { background: '#000000' } : undefined}>
                     {s.label}
                   </button>
                 ))}
@@ -239,13 +239,13 @@ export default function DocsRH() {
               <button onClick={exporterPdf} disabled={exportingPdf}
                 className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 disabled:opacity-50 disabled:pointer-events-none transition-colors whitespace-nowrap"
                 title="Exporter le rapport au format PDF">
-                {exportingPdf ? <Loader2 size={14} className="animate-spin" style={{ color: '#0F1E3D' }} /> : <FileText size={14} style={{ color: '#0F1E3D' }} />}
+                {exportingPdf ? <Loader2 size={14} className="animate-spin" style={{ color: '#000000' }} /> : <FileText size={14} style={{ color: '#000000' }} />}
                 Exporter PDF
               </button>
               <button onClick={exporter} disabled={exporting}
                 className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 disabled:opacity-50 disabled:pointer-events-none transition-colors whitespace-nowrap"
                 title="Exporter la liste au format Excel">
-                {exporting ? <Loader2 size={14} className="animate-spin" style={{ color: '#0F1E3D' }} /> : <FileDown size={14} style={{ color: '#0F1E3D' }} />}
+                {exporting ? <Loader2 size={14} className="animate-spin" style={{ color: '#000000' }} /> : <FileDown size={14} style={{ color: '#000000' }} />}
                 Exporter Excel
               </button>
             </div>
@@ -280,7 +280,7 @@ export default function DocsRH() {
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-2.5">
                           <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white"
-                            style={{ background: r.statut === 'REFUSE' ? '#B91C1C' : r.statut === 'DISPONIBLE' ? '#047857' : '#0F1E3D' }}>
+                            style={{ background: r.statut === 'REFUSE' ? '#B91C1C' : r.statut === 'DISPONIBLE' ? '#047857' : '#000000' }}>
                             {r.employeInitiales}
                           </div>
                           <div className="min-w-0">
@@ -292,7 +292,7 @@ export default function DocsRH() {
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-2.5">
                           <span className="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0" style={{ background: '#F0F4FF' }}>
-                            <FileText size={13} style={{ color: '#0F1E3D' }} />
+                            <FileText size={13} style={{ color: '#000000' }} />
                           </span>
                           <span className="text-xs font-medium text-gray-800">{r.typeDocument}</span>
                         </div>
@@ -409,7 +409,7 @@ export default function DocsRH() {
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
                 <span className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: '#F0F4FF' }}>
-                  <FileText size={17} style={{ color: '#0F1E3D' }} />
+                  <FileText size={17} style={{ color: '#000000' }} />
                 </span>
                 <div>
                   <h2 className="font-semibold text-gray-900 leading-tight">Demande de document</h2>
@@ -425,7 +425,7 @@ export default function DocsRH() {
               {/* Statut + collaborateur */}
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold text-white" style={{ background: '#0F1E3D' }}>
+                  <div className="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold text-white" style={{ background: '#000000' }}>
                     {detail.employeInitiales}
                   </div>
                   <div className="min-w-0">
@@ -513,7 +513,7 @@ export default function DocsRH() {
                 {detail.statut === 'DISPONIBLE' && (
                   <button onClick={() => { setDetail(null); download(detail) }}
                     className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 flex items-center justify-center gap-2 transition-all"
-                    style={{ background: '#0F1E3D' }}>
+                    style={{ background: '#000000' }}>
                     <Download size={14} /> Télécharger le PDF
                   </button>
                 )}

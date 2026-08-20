@@ -121,12 +121,12 @@ export default function Parametres() {
     `w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm text-gray-900 outline-none transition-all placeholder:text-gray-400 ` +
     (invalid
       ? 'border-red-300 focus:border-red-400 focus:ring-2 focus:ring-red-100 '
-      : 'border-gray-200 focus:border-[#0F1E3D] focus:ring-2 focus:ring-[#0F1E3D]/10')
+      : 'border-gray-200 focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/10')
 
   const CardTitle = ({ icon: Icon, title, desc }: { icon: typeof User; title: string; desc?: string }) => (
     <div className="px-6 py-5 border-b border-gray-100 flex items-start gap-3.5">
       <span className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-        style={{ background: '#F3F6FB', color: '#0F1E3D' }}>
+        style={{ background: '#F3F6FB', color: '#000000' }}>
         <Icon size={16} />
       </span>
       <div>
@@ -162,7 +162,7 @@ export default function Parametres() {
                   className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                     active ? 'text-white shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                   }`}
-                  style={active ? { background: '#0F1E3D' } : undefined}>
+                  style={active ? { background: '#000000' } : undefined}>
                   <Icon size={15} style={active ? { color: '#C9A227' } : undefined} />
                   {n.label}
                 </button>
@@ -195,21 +195,21 @@ export default function Parametres() {
 
                 <div className="mt-6 grid sm:grid-cols-2 gap-4">
                   <div className="rounded-xl border border-gray-100 bg-gray-50/60 px-4 py-3.5 flex items-start gap-3">
-                    <Mail size={15} className="mt-0.5 flex-shrink-0" style={{ color: '#0F1E3D' }} />
+                    <Mail size={15} className="mt-0.5 flex-shrink-0" style={{ color: '#000000' }} />
                     <div className="min-w-0">
                       <div className="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Adresse email</div>
                       <div className="text-sm font-medium text-gray-800 mt-0.5 truncate">{user?.email ?? '—'}</div>
                     </div>
                   </div>
                   <div className="rounded-xl border border-gray-100 bg-gray-50/60 px-4 py-3.5 flex items-start gap-3">
-                    <IdCard size={15} className="mt-0.5 flex-shrink-0" style={{ color: '#0F1E3D' }} />
+                    <IdCard size={15} className="mt-0.5 flex-shrink-0" style={{ color: '#000000' }} />
                     <div>
                       <div className="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Matricule</div>
                       <div className="text-sm font-medium text-gray-800 mt-0.5">{user?.matricule ?? '—'}</div>
                     </div>
                   </div>
                   <div className="rounded-xl border border-gray-100 bg-gray-50/60 px-4 py-3.5 flex items-start gap-3">
-                    <UserCog size={15} className="mt-0.5 flex-shrink-0" style={{ color: '#0F1E3D' }} />
+                    <UserCog size={15} className="mt-0.5 flex-shrink-0" style={{ color: '#000000' }} />
                     <div>
                       <div className="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Rôle</div>
                       <div className="text-sm font-medium text-gray-800 mt-0.5">
@@ -218,7 +218,7 @@ export default function Parametres() {
                     </div>
                   </div>
                   <div className="rounded-xl border border-gray-100 bg-gray-50/60 px-4 py-3.5 flex items-start gap-3">
-                    <ShieldCheck size={15} className="mt-0.5 flex-shrink-0" style={{ color: '#0F1E3D' }} />
+                    <ShieldCheck size={15} className="mt-0.5 flex-shrink-0" style={{ color: '#000000' }} />
                     <div>
                       <div className="text-[11px] font-semibold uppercase tracking-wide text-gray-400">Statut</div>
                       <div className="text-sm font-medium mt-0.5" style={{ color: badge.color }}>{badge.label}</div>
@@ -233,7 +233,7 @@ export default function Parametres() {
                   </div>
                   <button onClick={() => window.dispatchEvent(new CustomEvent('gns:navigate', { detail: 'profil' }))}
                     className="flex items-center gap-1 text-xs font-semibold hover:underline"
-                    style={{ color: '#0F1E3D' }}>
+                    style={{ color: '#000000' }}>
                     Ouvrir mon profil <ArrowRight size={12} />
                   </button>
                 </div>
@@ -316,7 +316,7 @@ export default function Parametres() {
                 <div className="flex items-center gap-3 pt-1">
                   <button type="submit" disabled={saving}
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60 shadow-sm"
-                    style={{ background: '#0F1E3D' }}>
+                    style={{ background: '#000000' }}>
                     {saving && <Loader2 size={13} className="animate-spin" />} Enregistrer le nouveau mot de passe
                   </button>
                   <span className="text-[11px] text-gray-400">Au moins 6 caractères, mélange de types conseillé</span>
@@ -339,7 +339,7 @@ export default function Parametres() {
                     </div>
                     <button role="switch" aria-checked={notifs[n.key]}
                       onClick={() => toggleNotif(n.key)}
-                      className="w-11 h-6 rounded-full transition-colors relative flex-shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-[#0F1E3D]/30"
+                      className="w-11 h-6 rounded-full transition-colors relative flex-shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-[#000000]/30"
                       style={{ background: notifs[n.key] ? '#10B981' : '#D1D5DB' }}>
                       <span className="absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all"
                         style={{ left: notifs[n.key] ? 22 : 2 }} />
@@ -365,7 +365,7 @@ export default function Parametres() {
                 <div className="flex items-center gap-2.5">
                   <Languages size={15} style={{ color: '#9CA3AF' }} />
                   <select value={langue} onChange={(e) => changeLangue(e.target.value)}
-                    className="flex-1 rounded-lg border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900 outline-none transition-all focus:border-[#0F1E3D] focus:ring-2 focus:ring-[#0F1E3D]/10">
+                    className="flex-1 rounded-lg border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900 outline-none transition-all focus:border-[#000000] focus:ring-2 focus:ring-[#000000]/10">
                     <option value="fr">Français</option>
                     <option value="en">English</option>
                   </select>
@@ -384,30 +384,30 @@ export default function Parametres() {
                 desc="Outils de gestion réservés au service RH et aux administrateurs" />
               <div className="p-6 grid sm:grid-cols-3 gap-4">
                 <button onClick={() => window.dispatchEvent(new CustomEvent('gns:navigate', { detail: 'acces' }))}
-                  className="rounded-xl border border-gray-100 hover:border-[#0F1E3D]/30 hover:shadow-sm transition-all p-4 text-left group">
+                  className="rounded-xl border border-gray-100 hover:border-[#000000]/30 hover:shadow-sm transition-all p-4 text-left group">
                   <span className="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
-                    style={{ background: '#F3F6FB', color: '#0F1E3D' }}>
+                    style={{ background: '#F3F6FB', color: '#000000' }}>
                     <ShieldCheck size={16} />
                   </span>
-                  <div className="text-sm font-semibold text-gray-900 group-hover:text-[#0F1E3D]">Contrôle d'accès</div>
+                  <div className="text-sm font-semibold text-gray-900 group-hover:text-[#000000]">Contrôle d'accès</div>
                   <p className="text-xs text-gray-500 mt-1 leading-relaxed">Permissions, utilisateurs, demandes de comptes et journal d'audit</p>
                 </button>
                 <button onClick={() => window.dispatchEvent(new CustomEvent('gns:navigate', { detail: 'structures' }))}
-                  className="rounded-xl border border-gray-100 hover:border-[#0F1E3D]/30 hover:shadow-sm transition-all p-4 text-left group">
+                  className="rounded-xl border border-gray-100 hover:border-[#000000]/30 hover:shadow-sm transition-all p-4 text-left group">
                   <span className="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
-                    style={{ background: '#F3F6FB', color: '#0F1E3D' }}>
+                    style={{ background: '#F3F6FB', color: '#000000' }}>
                     <UserCog size={16} />
                   </span>
-                  <div className="text-sm font-semibold text-gray-900 group-hover:text-[#0F1E3D]">Structures</div>
+                  <div className="text-sm font-semibold text-gray-900 group-hover:text-[#000000]">Structures</div>
                   <p className="text-xs text-gray-500 mt-1 leading-relaxed">Départements et équipes de l'organisation</p>
                 </button>
                 <button onClick={() => window.dispatchEvent(new CustomEvent('gns:navigate', { detail: 'kpi' }))}
-                  className="rounded-xl border border-gray-100 hover:border-[#0F1E3D]/30 hover:shadow-sm transition-all p-4 text-left group">
+                  className="rounded-xl border border-gray-100 hover:border-[#000000]/30 hover:shadow-sm transition-all p-4 text-left group">
                   <span className="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
-                    style={{ background: '#F3F6FB', color: '#0F1E3D' }}>
+                    style={{ background: '#F3F6FB', color: '#000000' }}>
                     <SlidersHorizontal size={16} />
                   </span>
-                  <div className="text-sm font-semibold text-gray-900 group-hover:text-[#0F1E3D]">KPI & Reporting</div>
+                  <div className="text-sm font-semibold text-gray-900 group-hover:text-[#000000]">KPI & Reporting</div>
                   <p className="text-xs text-gray-500 mt-1 leading-relaxed">Indicateurs clés et rapports d'activité</p>
                 </button>
               </div>

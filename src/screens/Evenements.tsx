@@ -6,7 +6,7 @@ import { useAuth } from '../context/AuthContext'
 import { ErrorBlock, fmtDate, Spinner, useToasts } from '../components/ui'
 
 const TYPE_COLORS: Record<string, string> = {
-  Formation: '#0F1E3D', Séminaire: '#C9A227', Réunion: '#6366F1',
+  Formation: '#000000', Séminaire: '#C9A227', Réunion: '#6366F1',
   Atelier: '#F59E0B', Célébration: '#EC4899', 'Team Building': '#10B981',
   Conférence: '#8B5CF6', 'Événement sportif': '#14B8A6',
 }
@@ -54,7 +54,7 @@ export default function Evenements() {
 
   const now = new Date()
   const kpis = [
-    { label: 'Événements à venir', value: events.filter((e) => new Date(e.dateDebut + 'T00:00:00') >= now).length, color: '#0F1E3D' },
+    { label: 'Événements à venir', value: events.filter((e) => new Date(e.dateDebut + 'T00:00:00') >= now).length, color: '#000000' },
     { label: 'Participants inscrits', value: events.reduce((s, e) => s + e.inscrits, 0), color: '#C9A227' },
     { label: 'Ce mois', value: events.filter((e) => { const d = new Date(e.dateDebut + 'T00:00:00'); return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear() }).length, color: '#10B981' },
     { label: 'Mes inscriptions', value: events.filter((e) => e.inscrit).length, color: '#6366F1' },
@@ -73,7 +73,7 @@ export default function Evenements() {
     }
   }
 
-  const colorOf = (ev: EvenementItem) => TYPE_COLORS[ev.type ?? ''] ?? '#0F1E3D'
+  const colorOf = (ev: EvenementItem) => TYPE_COLORS[ev.type ?? ''] ?? '#000000'
 
   const submitCreate = async (e: FormEvent) => {
     e.preventDefault()
@@ -125,7 +125,7 @@ export default function Evenements() {
         </div>
         {isRh && (
           <button onClick={() => setShowCreate(true)}
-            className="px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90" style={{ background: '#0F1E3D' }}>
+            className="px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90" style={{ background: '#000000' }}>
             + Créer un événement
           </button>
         )}
@@ -143,8 +143,8 @@ export default function Evenements() {
           }, {})
         ).map(([type, cap]) => (
           <div key={type} className="flex items-center gap-2 px-3 py-1.5 rounded-full border"
-            style={{ background: (TYPE_COLORS[type] ?? '#0F1E3D') + '10', borderColor: (TYPE_COLORS[type] ?? '#0F1E3D') + '30' }}>
-            <span className="text-xs font-semibold" style={{ color: TYPE_COLORS[type] ?? '#0F1E3D' }}>{type}</span>
+            style={{ background: (TYPE_COLORS[type] ?? '#000000') + '10', borderColor: (TYPE_COLORS[type] ?? '#000000') + '30' }}>
+            <span className="text-xs font-semibold" style={{ color: TYPE_COLORS[type] ?? '#000000' }}>{type}</span>
             <span className="text-xs text-gray-500">{cap.inscrits}/{cap.max > 0 ? cap.max : '∞'}</span>
           </div>
         ))}
@@ -166,9 +166,9 @@ export default function Evenements() {
           <button key={cat} onClick={() => setCategory(cat)}
             className="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all flex-shrink-0"
             style={{
-              background: category === cat ? '#0F1E3D' : '#fff',
+              background: category === cat ? '#000000' : '#fff',
               color: category === cat ? '#fff' : '#6B7280',
-              border: `1px solid ${category === cat ? '#0F1E3D' : '#E5E7EB'}`,
+              border: `1px solid ${category === cat ? '#000000' : '#E5E7EB'}`,
             }}>
             {cat}
           </button>
@@ -322,7 +322,7 @@ export default function Evenements() {
                 <div className="text-center py-8 text-sm" style={{ color: '#9CA3AF' }}>Aucun inscrit pour le moment</div>
               ) : inscrits.map((i) => (
                 <div key={i.employeId} className="flex items-center gap-3 p-2.5 rounded-lg" style={{ background: '#F7F8FA' }}>
-                  <div className="w-8 h-8 rounded-full bg-[#0F1E3D] text-white flex items-center justify-center text-xs font-bold">
+                  <div className="w-8 h-8 rounded-full bg-[#000000] text-white flex items-center justify-center text-xs font-bold">
                     {i.nomComplet.split(' ').map((p) => p[0]).join('').slice(0, 2).toUpperCase()}
                   </div>
                   <div className="flex-1">
@@ -385,7 +385,7 @@ export default function Evenements() {
                 <button type="button" onClick={() => setShowCreate(false)}
                   className="flex-1 py-2.5 rounded-lg text-sm font-medium border border-gray-200 hover:bg-gray-50">Annuler</button>
                 <button type="submit" disabled={saving}
-                  className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2" style={{ background: '#0F1E3D' }}>
+                  className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2" style={{ background: '#000000' }}>
                   {saving && <Loader2 size={13} className="animate-spin" />} Créer
                 </button>
               </div>

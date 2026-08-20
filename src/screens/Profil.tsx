@@ -105,7 +105,7 @@ export default function Profil() {
             {infos.map((r) => (
               <div key={r.label} className="flex items-center gap-4 px-6 py-2.5">
                 <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#F3F4F6' }}>
-                  <r.icon size={14} style={{ color: '#0F1E3D' }} />
+                  <r.icon size={14} style={{ color: '#000000' }} />
                 </div>
                 <span className="text-xs font-semibold text-gray-500 w-44">{r.label}</span>
                 <span className="text-sm font-medium text-gray-900">{r.value}</span>

@@ -172,7 +172,7 @@ export default function CongesCollab() {
   }
 
   const kpis = [
-    { label: 'Solde au 31/12', value: solde ? `${Math.round(solde.soldeAu31Decembre)} j` : '—', color: '#0F1E3D' },
+    { label: 'Solde au 31/12', value: solde ? `${Math.round(solde.soldeAu31Decembre)} j` : '—', color: '#000000' },
     { label: 'Solde à ce jour', value: solde ? `${Math.round(solde.soldeACeJour)} j` : '—', color: '#C9A227' },
     { label: 'Jours pris', value: solde ? `${Math.round(solde.joursPris)} j` : '—', color: '#10B981' },
     { label: 'Absent. justifiée', value: solde ? `${Math.round(solde.absencesJustifiees)} j` : '—', color: '#F59E0B' },
@@ -205,7 +205,7 @@ export default function CongesCollab() {
           <button
             onClick={openCreate}
             className="px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-all"
-            style={{ background: '#0F1E3D' }}
+            style={{ background: '#000000' }}
           >
             + Demander un congé
           </button>
@@ -240,7 +240,7 @@ export default function CongesCollab() {
               {(['mensuel', 'liste'] as const).map(v => (
                 <button key={v} onClick={() => setCalView(v)}
                   className="px-3 py-1.5 text-xs font-medium transition-colors capitalize"
-                  style={{ background: calView === v ? '#0F1E3D' : '#fff', color: calView === v ? '#fff' : '#6B7280' }}>
+                  style={{ background: calView === v ? '#000000' : '#fff', color: calView === v ? '#fff' : '#6B7280' }}>
                   {v.charAt(0).toUpperCase() + v.slice(1)}
                 </button>
               ))}
@@ -309,7 +309,7 @@ export default function CongesCollab() {
                       <div className="flex gap-1 flex-shrink-0">
                         <button onClick={(ev) => { ev.stopPropagation(); openEdit(d) }}
                           className="w-7 h-7 rounded-lg flex items-center justify-center hover:bg-gray-100"
-                          style={{ color: '#0F1E3D', border: '1px solid #E5E7EB' }}>
+                          style={{ color: '#000000', border: '1px solid #E5E7EB' }}>
                           <Pencil size={12} />
                         </button>
                         <button onClick={(ev) => { ev.stopPropagation(); annuler(d.id) }}
@@ -398,7 +398,7 @@ export default function CongesCollab() {
                 </button>
                 <button type="submit" disabled={saving}
                   className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2"
-                  style={{ background: '#0F1E3D' }}>
+                  style={{ background: '#000000' }}>
                   {saving && <Loader2 size={14} className="animate-spin" />}
                   {editing ? 'Enregistrer les modifications' : 'Enregistrer'}
                 </button>

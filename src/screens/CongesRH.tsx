@@ -203,13 +203,13 @@ export default function CongesRH() {
                 <div className="flex flex-wrap gap-1.5">
                   <button onClick={() => { setFilterDept(null); setShowFilters(false) }}
                     className="text-xs px-2.5 py-1 rounded-full font-medium"
-                    style={{ background: filterDept === null ? '#0F1E3D' : '#F3F4F6', color: filterDept === null ? '#fff' : '#374151' }}>
+                    style={{ background: filterDept === null ? '#000000' : '#F3F4F6', color: filterDept === null ? '#fff' : '#374151' }}>
                     Tous
                   </button>
                   {depts.map((d) => (
                     <button key={d} onClick={() => { setFilterDept(filterDept === d ? null : d); setShowFilters(false) }}
                       className="text-xs px-2.5 py-1 rounded-full font-medium"
-                      style={{ background: filterDept === d ? '#0F1E3D' : '#F3F4F6', color: filterDept === d ? '#fff' : '#374151' }}>
+                      style={{ background: filterDept === d ? '#000000' : '#F3F4F6', color: filterDept === d ? '#fff' : '#374151' }}>
                       {d}
                     </button>
                   ))}
@@ -229,13 +229,13 @@ export default function CongesRH() {
             }}
             className="flex items-center gap-1.5 px-3 py-2 text-sm rounded-lg border border-gray-200 hover:bg-gray-50"
             title="Exporter le planning des congés au format PDF">
-            <FileTextIcon size={14} style={{ color: '#0F1E3D' }} /> Export PDF
+            <FileTextIcon size={14} style={{ color: '#000000' }} /> Export PDF
           </button>
           <button onClick={exportXlsx} className="flex items-center gap-1.5 px-3 py-2 text-sm rounded-lg border border-gray-200 hover:bg-gray-50">
             <Download size={14} /> Export Excel
           </button>
           <button onClick={() => setShowReserve(true)} className="px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90"
-            style={{ background: '#0F1E3D' }}>
+            style={{ background: '#000000' }}>
             + Réserver un congé
           </button>
         </div>
@@ -246,12 +246,12 @@ export default function CongesRH() {
         <div className="flex border-b border-gray-100">
           <button onClick={() => setTab('calendrier')}
             className="px-5 py-3 text-sm font-medium border-b-2 transition-colors"
-            style={{ borderColor: tab === 'calendrier' ? '#0F1E3D' : 'transparent', color: tab === 'calendrier' ? '#0F1E3D' : '#6B7280' }}>
+            style={{ borderColor: tab === 'calendrier' ? '#000000' : 'transparent', color: tab === 'calendrier' ? '#000000' : '#6B7280' }}>
             Calendrier des congés
           </button>
           <button onClick={() => setTab('liste')}
             className="px-5 py-3 text-sm font-medium border-b-2 transition-colors flex items-center gap-2"
-            style={{ borderColor: tab === 'liste' ? '#0F1E3D' : 'transparent', color: tab === 'liste' ? '#0F1E3D' : '#6B7280' }}>
+            style={{ borderColor: tab === 'liste' ? '#000000' : 'transparent', color: tab === 'liste' ? '#000000' : '#6B7280' }}>
             Collaborateurs en congé
             <span className="text-xs rounded-full px-1.5 py-0.5 font-semibold" style={{ background: '#FEF3C7', color: '#92400E' }}>
               {collabsEnConge.length}
@@ -275,7 +275,7 @@ export default function CongesRH() {
             <div className="flex items-center gap-4 px-4 py-3 border-b border-gray-50 flex-wrap">
               {types.filter((t) => t.code).map((t) => (
                 <div key={t.id} className="flex items-center gap-1.5">
-                  <div className="w-3 h-3 rounded" style={{ background: (t.couleur ?? '#0F1E3D') + '30', border: `1px solid ${t.couleur ?? '#0F1E3D'}40` }} />
+                  <div className="w-3 h-3 rounded" style={{ background: (t.couleur ?? '#000000') + '30', border: `1px solid ${t.couleur ?? '#000000'}40` }} />
                   <span className="text-xs text-gray-600">{t.nom}</span>
                 </div>
               ))}
@@ -303,7 +303,7 @@ export default function CongesRH() {
                     <td className="px-4 py-2 sticky left-0 bg-white">
                       <div className="flex items-center gap-2">
                         <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
-                          style={{ background: '#0F1E3D' }}>{collab.initiales}</div>
+                          style={{ background: '#000000' }}>{collab.initiales}</div>
                         <div>
                           <div className="text-xs font-medium text-gray-900 whitespace-nowrap">{collab.nom}</div>
                           <div className="text-xs text-gray-400">{collab.departement}</div>
@@ -318,7 +318,7 @@ export default function CongesRH() {
                           {cell ? (
                             <div
                               className="mx-auto w-6 h-6 rounded text-xs flex items-center justify-center font-bold cursor-pointer hover:opacity-80"
-                              style={{ background: (cell.couleur ?? '#0F1E3D') + '22', color: cell.couleur ?? '#0F1E3D' }}
+                              style={{ background: (cell.couleur ?? '#000000') + '22', color: cell.couleur ?? '#000000' }}
                               onClick={() => openDetail(cell.demandeId)}
                               title={`${cell.libelle}${typeInfo ? ` (${typeInfo.nom})` : ''}`}
                             >
@@ -357,7 +357,7 @@ export default function CongesRH() {
                 <div key={c.employeId} className="flex items-center gap-3 p-3 rounded-lg border border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer"
                   onClick={() => premiereDemandeId && openDetail(premiereDemandeId)}>
                   <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                    style={{ background: '#0F1E3D' }}>{c.initiales}</div>
+                    style={{ background: '#000000' }}>{c.initiales}</div>
                   <div className="flex-1">
                     <div className="font-medium text-sm text-gray-900">{c.nom}</div>
                     <div className="text-xs text-gray-500">{c.departement}</div>
@@ -378,7 +378,7 @@ export default function CongesRH() {
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ background: '#0F1E3D' }}>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ background: '#000000' }}>
                   {popup.employeInitiales}
                 </div>
                 <div>
@@ -436,7 +436,7 @@ export default function CongesRH() {
                       .then(() => success('Justificatif téléchargé'))
                       .catch((e) => toastError(e.message))}
                       className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg text-xs font-semibold border border-gray-200 hover:bg-gray-50">
-                      <FileTextIcon size={13} style={{ color: '#0F1E3D' }} /> Ouvrir le justificatif ({popup.justificatifUrl?.split('/').pop()})
+                      <FileTextIcon size={13} style={{ color: '#000000' }} /> Ouvrir le justificatif ({popup.justificatifUrl?.split('/').pop()})
                     </button>
                   )}
 
@@ -544,7 +544,7 @@ export default function CongesRH() {
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <h2 className="font-semibold text-gray-900 flex items-center gap-2">
-                <CalendarPlus size={16} style={{ color: '#0F1E3D' }} /> Réserver un congé
+                <CalendarPlus size={16} style={{ color: '#000000' }} /> Réserver un congé
               </h2>
               <button onClick={() => setShowReserve(false)} className="w-7 h-7 rounded hover:bg-gray-100 flex items-center justify-center">
                 <X size={16} />
@@ -614,7 +614,7 @@ export default function CongesRH() {
                 </button>
                 <button onClick={submitReserve} disabled={saving}
                   className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60"
-                  style={{ background: '#0F1E3D' }}>
+                  style={{ background: '#000000' }}>
                   {saving ? 'Enregistrement...' : 'Enregistrer'}
                 </button>
               </div>

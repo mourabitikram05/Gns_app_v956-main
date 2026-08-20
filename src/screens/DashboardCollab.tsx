@@ -161,7 +161,7 @@ export default function DashboardCollab() {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90 flex items-center gap-1.5"
-            style={{ background: '#0F1E3D' }}>
+            style={{ background: '#000000' }}>
             + Nouvelle demande <ChevronDown size={14} />
           </button>
           {menuOpen && (
@@ -175,7 +175,7 @@ export default function DashboardCollab() {
                 return (
                   <button key={m.screen} onClick={() => { setMenuOpen(false); navigate(m.screen) }}
                     className="w-full flex items-center gap-3 px-4 py-3 text-sm hover:bg-gray-50 transition-colors text-gray-700">
-                    <Icon size={15} style={{ color: '#0F1E3D' }} /> {m.label}
+                    <Icon size={15} style={{ color: '#000000' }} /> {m.label}
                   </button>
                 )
               })}
@@ -216,7 +216,7 @@ export default function DashboardCollab() {
                   : navigate(sh.action)}
                   className="flex flex-col items-center gap-1.5 py-2 rounded-lg hover:bg-gray-50 transition-colors text-xs text-gray-600">
                   <span className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#F0F4FF' }}>
-                    <Icon size={14} style={{ color: '#0F1E3D' }} />
+                    <Icon size={14} style={{ color: '#000000' }} />
                   </span>
                   {sh.label}
                 </button>
@@ -232,7 +232,7 @@ export default function DashboardCollab() {
           <button
             onClick={punch}
             className="mt-4 w-full py-2.5 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90 flex items-center justify-center gap-2"
-            style={{ background: pointage && !pointage.heureDepart ? '#c9a227' : '#0f1e3d' }}
+            style={{ background: pointage && !pointage.heureDepart ? '#c9a227' : '#000000' }}
           >
             {pointage && !pointage.heureDepart ? <LogOut size={14} /> : <LogIn size={14} />}
             {pointage && !pointage.heureDepart ? 'Pointer le départ' : pointage ? 'Pointer l\'arrivée' : 'Pointer l\'arrivée'}
@@ -311,7 +311,7 @@ export default function DashboardCollab() {
           {TABS.map((tab) => (
             <button key={tab} onClick={() => setActiveTab(tab)}
               className="px-5 py-2.5 text-sm font-medium transition-colors border-b-2 whitespace-nowrap flex-shrink-0"
-              style={{ borderColor: activeTab === tab ? '#0F1E3D' : 'transparent', color: activeTab === tab ? '#0F1E3D' : '#6B7280' }}>
+              style={{ borderColor: activeTab === tab ? '#000000' : 'transparent', color: activeTab === tab ? '#000000' : '#6B7280' }}>
               {tab}
             </button>
           ))}
@@ -342,7 +342,7 @@ export default function DashboardCollab() {
                       <td className="px-5 py-3">
                         <div className="flex items-center gap-2">
                           <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
-                            style={{ background: '#0F1E3D' }}>{row.avatar}</div>
+                            style={{ background: '#000000' }}>{row.avatar}</div>
                           <span className="font-medium text-gray-900">{row.name}</span>
                         </div>
                       </td>
@@ -377,14 +377,14 @@ export default function DashboardCollab() {
             )}
             {evenements.map((ev, i) => (
               <div key={ev.id} className="flex items-center gap-3 px-5 py-3">
-                <div className="w-1.5 h-10 rounded-full flex-shrink-0" style={{ background: i % 3 === 0 ? '#0F1E3D' : i % 3 === 1 ? '#C9A227' : '#10B981' }} />
+                <div className="w-1.5 h-10 rounded-full flex-shrink-0" style={{ background: i % 3 === 0 ? '#000000' : i % 3 === 1 ? '#C9A227' : '#10B981' }} />
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-medium text-gray-900 truncate">{ev.titre}</div>
                   <div className="text-xs text-gray-500">
                     {fmtDate(ev.dateDebut)}{ev.dateFin !== ev.dateDebut ? ` → ${fmtDate(ev.dateFin)}` : ''}{ev.lieu ? ` · ${ev.lieu}` : ''}
                   </div>
                 </div>
-                <span className="text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0" style={{ background: '#0F1E3D18', color: '#0F1E3D' }}>
+                <span className="text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0" style={{ background: '#00000018', color: '#000000' }}>
                   {ev.type}
                 </span>
               </div>

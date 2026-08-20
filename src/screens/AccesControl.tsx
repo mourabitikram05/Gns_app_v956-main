@@ -160,7 +160,7 @@ export default function AccesControl() {
           return (
             <button key={t.id} onClick={() => setTab(t.id)}
               className="flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors"
-              style={{ borderColor: tab === t.id ? '#0F1E3D' : 'transparent', color: tab === t.id ? '#0F1E3D' : '#6B7280' }}>
+              style={{ borderColor: tab === t.id ? '#000000' : 'transparent', color: tab === t.id ? '#000000' : '#6B7280' }}>
               <Icon size={14} /> {t.label}
             </button>
           )
@@ -190,7 +190,7 @@ export default function AccesControl() {
               {modules.map((module) => (
                 <>
                   <tr key={module} className="bg-gray-50/50">
-                    <td colSpan={roleList.length + 1} className="px-5 py-2 text-xs font-bold uppercase tracking-wider" style={{ color: '#0F1E3D' }}>
+                    <td colSpan={roleList.length + 1} className="px-5 py-2 text-xs font-bold uppercase tracking-wider" style={{ color: '#000000' }}>
                       <Shield size={11} className="inline mr-1" /> {module}
                     </td>
                   </tr>
@@ -203,7 +203,7 @@ export default function AccesControl() {
                           <td key={r} className="px-4 py-2.5 text-center">
                             <button onClick={() => togglePermission(r, p.code)}
                               className="w-5 h-5 rounded border-2 inline-flex items-center justify-center transition-colors"
-                              style={{ borderColor: checked ? '#0F1E3D' : '#D1D5DB', background: checked ? '#0F1E3D' : '#fff' }}>
+                              style={{ borderColor: checked ? '#000000' : '#D1D5DB', background: checked ? '#000000' : '#fff' }}>
                               {checked && <span className="text-white text-[10px] font-bold">✓</span>}
                             </button>
                           </td>
@@ -249,7 +249,7 @@ export default function AccesControl() {
                       </button>
                       <button onClick={() => validerCompte(u)}
                         className="px-3 py-1.5 text-xs font-semibold text-white rounded-lg hover:opacity-90 flex items-center gap-1"
-                        style={{ background: '#0F1E3D' }}>
+                        style={{ background: '#000000' }}>
                         <ShieldCheck size={12} /> Valider le compte
                       </button>
                     </div>
@@ -263,7 +263,7 @@ export default function AccesControl() {
             <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
               <h3 className="font-semibold text-gray-900">Comptes utilisateurs ({utilisateurs.length})</h3>
               <button onClick={openCreate}
-                className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-white rounded-lg hover:opacity-90" style={{ background: '#0F1E3D' }}>
+                className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-white rounded-lg hover:opacity-90" style={{ background: '#000000' }}>
                 <UserPlus size={13} /> Créer un compte
               </button>
             </div>
@@ -306,7 +306,7 @@ export default function AccesControl() {
                                 style={{ background: '#FEE2E2', color: '#991B1B' }}>Refuser</button>
                               <button onClick={() => validerCompte(u)}
                                 className="px-2.5 py-1.5 text-xs font-semibold text-white rounded-lg"
-                                style={{ background: '#0F1E3D' }}>Valider</button>
+                                style={{ background: '#000000' }}>Valider</button>
                             </>
                           ) : (
                             <button onClick={() => toggleStatut(u)}
@@ -403,7 +403,7 @@ export default function AccesControl() {
               </div>
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setShowUser(false)} className="flex-1 py-2.5 rounded-lg text-sm font-medium border border-gray-200 hover:bg-gray-50">Annuler</button>
-                <button type="submit" disabled={saving} className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2" style={{ background: '#0F1E3D' }}>
+                <button type="submit" disabled={saving} className="flex-1 py-2.5 rounded-lg text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2" style={{ background: '#000000' }}>
                   {saving && <Loader2 size={13} className="animate-spin" />} Enregistrer
                 </button>
               </div>
