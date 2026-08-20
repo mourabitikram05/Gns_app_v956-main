@@ -40,11 +40,11 @@ export default function Login() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <img src={gnsLogo} alt="GNS Technologies" className="h-24 w-auto mb-3" />
-          <div className="text-xs mt-2" style={{ color: 'rgba(255,255,255,0.45)' }}>
-            Portail SIRH — Congés, Annuaire &amp; Dashboards
-          </div>
+        <img src={gnsLogo} alt="GNS Technologies" className="h-24 w-auto mb-3" />
+        <div className="text-xs mt-2" style={{ color: 'rgba(255,255,255,0.45)' }}>
+          Portail SIRH — Congés, Annuaire &amp; Dashboards
         </div>
+      </div>
 
         {/* Card */}
         <div className="bg-white rounded-2xl shadow-2xl p-7">

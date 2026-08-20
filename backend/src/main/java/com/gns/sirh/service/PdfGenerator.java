@@ -5,6 +5,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
+import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
@@ -196,16 +197,21 @@ public final class PdfGenerator {
         }
         entete.addCell(gauche);
 
-        // Colonne droite : espace réservé au logo
-        PdfPCell logo = new PdfPCell(new Phrase("ESPACE\nLOGO", police(8f, Font.BOLD, GRIS)));
-        logo.setBorder(Rectangle.BOX);
-        logo.setBorderColor(BORDURE);
-        logo.setBorderWidth(0.8f);
-        logo.setMinimumHeight(48f);
+        // Colonne droite : logo de l'entreprise
+        PdfPCell logo;
+        try {
+            byte[] logoBytes = PdfGenerator.class.getResourceAsStream("/logo.png").readAllBytes();
+            Image img = Image.getInstance(logoBytes);
+            img.scaleToFit(130f, 46f);
+            logo = new PdfPCell(img, false);
+            logo.setBorder(Rectangle.NO_BORDER);
+        } catch (Exception e) {
+            logo = new PdfPCell(new Phrase("GNS", police(8f, Font.BOLD, GRIS)));
+            logo.setBorder(Rectangle.NO_BORDER);
+        }
         logo.setHorizontalAlignment(Element.ALIGN_CENTER);
         logo.setVerticalAlignment(Element.ALIGN_MIDDLE);
-        logo.setPaddingTop(6f);
-        logo.setPaddingBottom(6f);
+        logo.setMinimumHeight(48f);
         entete.addCell(logo);
 
         doc.add(entete);

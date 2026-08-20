@@ -13,18 +13,25 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import com.gns.sirh.entity.Employe;
+import com.gns.sirh.repository.EmployeRepository;
+import com.gns.sirh.security.AuthUser;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/documents")
 
+
 public class DocumentController {
 
     private final DocumentService documentService;
+    private final EmployeRepository employeRepository;
 
-    public DocumentController(DocumentService documentService) {
+
+    public DocumentController(DocumentService documentService, EmployeRepository employeRepository) {
         this.documentService = documentService;
+        this.employeRepository = employeRepository;
     }
 
     @GetMapping("/types")
@@ -55,12 +62,20 @@ public class DocumentController {
         return ApiResponse.success(documentService.stats());
     }
 
+
+    private String nomSignataire(AuthUser user) {
+    return employeRepository.findById(user.employeId())
+            .map(Employe::getNomComplet)
+            .orElse(user.email());
+    }
+
+
     @PermissionRequired("DOCUMENTS_RH")
     @PostMapping("/demandes/{id}/traiter")
     @PreAuthorize("hasAnyRole('RESPONSABLE_RH', 'ADMIN')")
     public ApiResponse<DemandeDocumentResponse> traiter(@PathVariable Long id) {
         return ApiResponse.success("Document généré",
-                documentService.traiter(id, SecurityUtils.currentUser().email()));
+                documentService.traiter(id, nomSignataire(SecurityUtils.currentUser())));
     }
 
     @PermissionRequired("DOCUMENTS_RH")
