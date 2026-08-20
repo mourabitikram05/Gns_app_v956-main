@@ -592,9 +592,7 @@ export function signatureBlock(ctx: PdfContext, lines: Array<[string, string]> =
 export function openPdf(doc: jsPDF, filename: string): void {
   const blob = doc.output('blob')
   const url = URL.createObjectURL(blob)
-  const win = window.open(url, '_blank')
-  // Laisse l'aperçu actif : l'URL est libérée après 5 minutes
-  setTimeout(() => URL.revokeObjectURL(url), 5 * 60 * 1000)
+  const win = window.open('', '_blank')
   if (!win) {
     // Popup bloquée : repli sur le téléchargement direct
     const a = document.createElement('a')
@@ -608,7 +606,18 @@ export function openPdf(doc: jsPDF, filename: string): void {
       a.remove()
       URL.revokeObjectURL(url)
     }, 1000)
+    return
   }
+  const safe = filename.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+  win.document.write(
+    '<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>' + safe + '</title>' +
+    '<style>body{margin:0;font-family:Arial,sans-serif}.bar{display:flex;align-items:center;gap:12px;padding:10px 16px;background:#0a0a0a;color:#fff;font-size:13px}.bar b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60vw}.bar a{margin-left:auto;color:#C9A227;text-decoration:none;font-weight:700;border:1px solid #C9A227;padding:7px 16px;border-radius:6px;white-space:nowrap}.bar a:hover{background:#C9A227;color:#0a0a0a}embed{display:block;width:100vw;height:calc(100vh - 45px);border:0}</style></head>' +
+    '<body><div class="bar"><b>' + safe + '</b><a href="' + url + '" download="' + safe + '">Télécharger</a></div>' +
+    '<embed src="' + url + '" type="application/pdf" /></body></html>',
+  )
+  win.document.close()
+  // Laisse l'aperçu actif : l'URL est libérée après 5 minutes
+  setTimeout(() => URL.revokeObjectURL(url), 5 * 60 * 1000)
 }
 
 /** Nom de fichier sûr : minuscules, sans accents, sans caractères spéciaux. */

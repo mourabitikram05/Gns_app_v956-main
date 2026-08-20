@@ -18,12 +18,11 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 import gnsLogoUrl from '@/imports/GNS_logo.png'
-import gnsLogoInline from '@/imports/GNS_logo.png?inline'
 import { setDefaultLogo } from './services/pdf'
 
 // Logo officiel GNS TECHNOLOGIES pour les en-têtes de tous les PDF générés.
 // Le suffixe ?inline fournit un data URL directement utilisable par jsPDF.
-setDefaultLogo(gnsLogoInline)
+setDefaultLogo(gnsLogoUrl)
 
 // Secours robuste : si le bundler ne produit pas un data URL utilisable,
 // on convertit l'URL de l'asset en data URL au chargement de l'application.

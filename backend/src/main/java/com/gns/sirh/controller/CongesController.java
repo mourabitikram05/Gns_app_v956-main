@@ -157,6 +157,7 @@ public class CongesController {
     @GetMapping("/justificatifs/{fileName}")
     public ResponseEntity<byte[]> telechargerJustificatif(@PathVariable String fileName) {
         try {
+            String nomPropre = fileName.replaceFirst("^\\d{13}_", "");
             Path baseDir = Paths.get("uploads", "justificatifs").toAbsolutePath().normalize();
             Path path = baseDir.resolve(fileName).normalize();
             if (!path.startsWith(baseDir)) {
@@ -174,7 +175,7 @@ public class CongesController {
             }
 
             return ResponseEntity.ok()
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + nomPropre + "\"")
                     .contentType(MediaType.parseMediaType(contentType))
                     .body(contenu);
         } catch (IOException ex) {

@@ -197,8 +197,9 @@ public class RecrutementController {
     @GetMapping("/fichiers/{dossier}/{fileName}")
     public ResponseEntity<byte[]> telechargerFichier(@PathVariable String dossier, @PathVariable String fileName) {
         byte[] contenu = recrutementService.lireFichier(dossier, fileName);
+        String nomPropre = fileName.replaceFirst("^\\d{13}_", "");
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + nomPropre + "\"")
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(contenu);
     }

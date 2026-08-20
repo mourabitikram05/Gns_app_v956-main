@@ -180,10 +180,11 @@ public class FraisController {
         if (contentType == null) {
             contentType = "application/octet-stream";
         }
+        String nomPropre = fileName.replaceFirst("^\\d{13}_", "");
+
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
-                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + nomPropre + "\"")                .contentType(MediaType.parseMediaType(contentType))
                 .body(contenu);
     }
 }
