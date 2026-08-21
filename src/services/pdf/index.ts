@@ -91,8 +91,12 @@ export function downloadDocumentPdf(demandes: DemandeDocument[], stats?: StatsDo
 }
 
 /** Télécharge un document administratif officiel (attestation, certificat…). */
+// export function downloadDocumentOfficielPdf(demande: DemandeDocument): void {
+//   openPdf(documentOfficielPdf(demande), `${safeFileName(demande.reference)}.pdf`)
+// }
 export function downloadDocumentOfficielPdf(demande: DemandeDocument): void {
-  openPdf(documentOfficielPdf(demande), `${safeFileName(demande.reference)}.pdf`)
+  const type = safeFileName(demande.typeDocument || 'document')
+  openPdf(documentOfficielPdf(demande), `${type}_${demande.reference}.pdf`)
 }
 
 export function downloadStructurePdf(departements: DepartementItem[], equipes: EquipeItem[]): void {
