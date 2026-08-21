@@ -154,7 +154,7 @@ export default function DocsRH() {
   }
 
   return (
-    <div className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto flex flex-col flex-1">
+    <div className="p-4 sm:p-6 space-y-6 flex flex-col flex-1">
       {/* En-tête de page */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>

@@ -1,0 +1,79 @@
+diff --git a/src/components/Layout.tsx b/src/components/Layout.tsx
+index ee5251a..3b54c3e 100644
+--- a/src/components/Layout.tsx
++++ b/src/components/Layout.tsx
+@@ -382,7 +382,7 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
+         </header>
+ 
+         {/* Content */}
+-        <main className="flex-1 overflow-y-auto">
++        <main className="flex-1 overflow-y-auto flex flex-col">
+           {children}
+         </main>
+       </div>
+diff --git a/src/screens/DocsCollab.tsx b/src/screens/DocsCollab.tsx
+index d4dcde4..630c8e8 100644
+--- a/src/screens/DocsCollab.tsx
++++ b/src/screens/DocsCollab.tsx
+@@ -178,7 +178,7 @@ export default function DocsCollab() {
+   }
+ 
+   return (
+-    <div className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto">
++    <div className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto flex flex-col flex-1">
+       {/* En-tête de page */}
+       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+         <div>
+@@ -297,7 +297,7 @@ export default function DocsCollab() {
+           </section>
+ 
+           {/* Historique des demandes */}
+-          <section className="bg-white rounded-xl border border-gray-200/80 shadow-sm overflow-hidden">
++          <section className="bg-white rounded-xl border border-gray-200/80 shadow-sm overflow-hidden grow shrink-0">
+             <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2.5">
+               <span className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#F3F4F6' }}>
+                 <Clock size={15} style={{ color: '#000000' }} />
+diff --git a/src/screens/DocsRH.tsx b/src/screens/DocsRH.tsx
+index 88274c7..64889cd 100644
+--- a/src/screens/DocsRH.tsx
++++ b/src/screens/DocsRH.tsx
+@@ -154,7 +154,7 @@ export default function DocsRH() {
+   }
+ 
+   return (
+-    <div className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto">
++    <div className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto flex flex-col flex-1">
+       {/* En-tête de page */}
+       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+         <div>
+@@ -209,7 +209,7 @@ export default function DocsRH() {
+           </div>
+ 
+           {/* Table des demandes */}
+-          <section className="bg-white rounded-xl border border-gray-200/80 shadow-sm overflow-hidden">
++          <section className="bg-white rounded-xl border border-gray-200/80 shadow-sm overflow-hidden grow shrink-0">
+             <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2.5">
+               <span className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#F3F4F6' }}>
+                 <Inbox size={15} style={{ color: '#000000' }} />
+diff --git a/src/screens/Structures.tsx b/src/screens/Structures.tsx
+index 162c8fe..451cc40 100644
+--- a/src/screens/Structures.tsx
++++ b/src/screens/Structures.tsx
+@@ -143,7 +143,7 @@ export default function Structures() {
+     : { titre: 'Équipes', total: equipes.length, totalEmployes: equipes.reduce((s, e) => s + e.nbEmployes, 0) }
+ 
+   return (
+-    <div className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto">
++    <div className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto flex flex-col flex-1">
+       {/* En-tête */}
+       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+         <div>
+@@ -240,7 +240,7 @@ export default function Structures() {
+           </div>
+ 
+           {/* Tableau */}
+-          <section className="bg-white rounded-xl border border-gray-200/80 shadow-sm overflow-hidden">
++          <section className="bg-white rounded-xl border border-gray-200/80 shadow-sm overflow-hidden grow shrink-0">
+             <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2.5">
+               <span className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#F3F4F6' }}>
+                 {onglet === 'departements' ? <Building2 size={15} style={{ color: '#000000' }} /> : <Layers size={15} style={{ color: '#000000' }} />}
