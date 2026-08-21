@@ -382,7 +382,7 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
         </header>
 
         {/* Content */}
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto flex flex-col">
           {children}
         </main>
       </div>

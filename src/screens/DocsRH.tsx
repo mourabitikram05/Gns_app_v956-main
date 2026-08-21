@@ -154,7 +154,7 @@ export default function DocsRH() {
   }
 
   return (
-    <div className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto">
+    <div className="p-4 sm:p-6 space-y-6 max-w-7xl mx-auto flex flex-col flex-1">
       {/* En-tête de page */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -209,7 +209,7 @@ export default function DocsRH() {
           </div>
 
           {/* Table des demandes */}
-          <section className="bg-white rounded-xl border border-gray-200/80 shadow-sm overflow-hidden">
+          <section className="bg-white rounded-xl border border-gray-200/80 shadow-sm overflow-hidden flex-1">
             <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2.5">
               <span className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#F3F4F6' }}>
                 <Inbox size={15} style={{ color: '#000000' }} />
