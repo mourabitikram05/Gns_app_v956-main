@@ -6,6 +6,7 @@ import {
   Settings, User, Menu, X, Wrench, FileDown
 } from 'lucide-react'
 import gnsLogo from '@/imports/GNS_logo.png'
+import gnsIconLogo from '@/imports/GNS_icon.png'   
 import { useAuth } from '../context/AuthContext'
 import { notificationsApi } from '../api/modules'
 import type { NotificationItem } from '../api/types'
@@ -128,100 +129,145 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
   return (
     <div className="flex h-screen overflow-hidden" style={{ background: '#F7F8FA' }}>
       {/* Sidebar */}
-      <aside
-        className="flex flex-col flex-shrink-0 transition-all duration-300 overflow-hidden"
-        style={{
-          width: sidebarOpen ? 240 : 64,
-          background: '#000000',
-          borderRight: '1px solid rgba(255,255,255,0.06)'
-        }}
+     {/* Sidebar */}
+<aside
+  className="flex flex-col flex-shrink-0 transition-all duration-300 overflow-hidden"
+  style={{
+    width: sidebarOpen ? 240 : 72,
+    background: '#0A0A0A',
+    borderRight: '1px solid rgba(255,255,255,0.06)',
+  }}
+>
+  {/* Logo */}
+ {/* En-tête — logo cliquable, pas de bouton séparé */}
+<div
+  className="relative flex items-center justify-center flex-shrink-0"
+  style={{ minHeight: 68, padding: sidebarOpen ? '18px 16px' : '14px 8px' }}
+>
+  {sidebarOpen ? (
+    <>
+      <img src={gnsLogo} alt="GNS Technologies" className="h-11 w-auto" />
+      <button
+        onClick={() => setSidebarOpen(false)}
+        className="absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg flex items-center justify-center transition-colors hover:bg-white/10"
+        title="Réduire le menu"
       >
-        {/* Logo
-        <div className="flex items-center gap-3 px-4 py-4 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)', minHeight: 64 }}>
-          <div className="flex-shrink-0 w-8 h-8 overflow-hidden rounded">
-            <img src={gnsLogo} alt="GNS Technologies" className="w-full h-full object-cover" />
-          </div>
+        <X size={14} color="#9CA3AF" />
+      </button>
+    </>
+  ) : (
+    <button
+      onClick={() => setSidebarOpen(true)}
+      className="w-10 h-10 rounded-xl flex items-center justify-center transition-all hover:bg-white/10 hover:scale-105"
+      title="Ouvrir le menu"
+    >
+      <img src={gnsIconLogo} alt="GNS" className="w-8 h-8 object-contain" />
+    </button>
+  )}
+</div>
+<div className="h-px flex-shrink-0" style={{ background: 'linear-gradient(90deg, #C9A227 0%, rgba(201,162,39,0) 70%)' }} />
+
+
+  {/* Nav */}
+  <nav className="flex-1 overflow-y-auto py-3">
+    {groups.map((group, gi) => {
+      const items = visibleItems.filter((i) => i.group === group)
+      return (
+        <div
+          key={group}
+          className="pb-2 mb-2"
+          style={gi > 0 ? { borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 10 } : undefined}
+        >
           {sidebarOpen && (
-            <div className="overflow-hidden">
-              <div className="text-white font-bold text-sm leading-tight whitespace-nowrap">GNS</div>
-              <div className="text-xs whitespace-nowrap" style={{ color: '#C9A227' }}>TECHNOLOGIES</div>
+            <div
+              className="px-4 py-1 text-[10px] font-bold uppercase tracking-widest"
+              style={{ color: 'rgba(255,255,255,0.28)' }}
+            >
+              {group}
             </div>
           )}
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="ml-auto p-1 rounded hover:bg-white/10 transition-colors"
-          >
-            {sidebarOpen ? <X size={14} color="#9CA3AF" /> : <Menu size={14} color="#9CA3AF" />}
-          </button>
-        </div> */}
-        
-        {/* Logo officiel */}
-<div className="flex items-center gap-3 px-4 py-4 border-b flex-shrink-0" style={{ borderColor: 'rgba(255,255,255,0.08)', minHeight: 64 }}>
-  {sidebarOpen ? (
-    <img src={gnsLogo} alt="GNS Technologies" className="h-14 w-auto" />
-  ) : (
-    <div className="w-8 h-8 overflow-hidden rounded flex-shrink-0">
-      <img src={gnsLogo} alt="GNS" className="w-full h-full object-cover object-left" />
-    </div>
-  )}
-  <button
-    onClick={() => setSidebarOpen(!sidebarOpen)}
-    className="ml-auto p-1 rounded hover:bg-white/10 transition-colors"
-  >
-    {sidebarOpen ? <X size={14} color="#9CA3AF" /> : <Menu size={14} color="#9CA3AF" />}
-  </button>
-</div>
-
-        {/* Nav */}
-        <nav className="flex-1 overflow-y-auto py-3">
-          {groups.map(group => {
-            const items = visibleItems.filter(i => i.group === group)
+          {items.map((item) => {
+            const Icon = item.icon
+            const active = activeScreen === item.id
             return (
-              <div key={group} className="mb-2">
-                {sidebarOpen && (
-                  <div className="px-4 py-1 text-xs font-semibold uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.3)' }}>
-                    {group}
-                  </div>
+              <div key={item.id} className="relative px-2">
+                {active && (
+                  <span
+                    className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] rounded-r-full"
+                    style={{ height: 18, background: '#C9A227' }}
+                  />
                 )}
-                {items.map(item => {
-                  const Icon = item.icon
-                  const active = activeScreen === item.id
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => onNavigate(item.id)}
-                      className="w-full flex items-center gap-3 px-4 py-2 text-sm transition-all duration-150"
-                      style={{
-                        color: active ? '#fff' : 'rgba(255,255,255,0.65)',
-                        background: active ? 'rgba(201,162,39,0.18)' : 'transparent',
-                        borderLeft: active ? '2px solid #C9A227' : '2px solid transparent',
-                      }}
-                      title={!sidebarOpen ? item.label : undefined}
-                    >
-                      <Icon size={16} className="flex-shrink-0" style={{ color: active ? '#C9A227' : 'rgba(255,255,255,0.6)' }} />
-                      {sidebarOpen && <span className="truncate font-medium">{item.label}</span>}
-                    </button>
-                  )
-                })}
+                <button
+                  onClick={() => onNavigate(item.id)}
+                  className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 hover:bg-white/5 ${
+                    sidebarOpen ? '' : 'justify-center'
+                  }`}
+                  style={{
+                    color: active ? '#fff' : 'rgba(255,255,255,0.6)',
+                    background: active ? 'rgba(201,162,39,0.12)' : 'transparent',
+                  }}
+                  title={!sidebarOpen ? item.label : undefined}
+                >
+                  <Icon
+                    size={17}
+                    className="flex-shrink-0"
+                    style={{ color: active ? '#C9A227' : 'rgba(255,255,255,0.45)' }}
+                  />
+                  {sidebarOpen && <span className="truncate font-medium">{item.label}</span>}
+                </button>
               </div>
             )
           })}
-        </nav>
-
-        {/* User */}
-        <div className="border-t p-3" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold text-white"
-              style={{ background: '#C9A227' }}>{initials}</div>
-            {sidebarOpen && (
-              <div className="flex-1 overflow-hidden">
-                <div className="text-white text-xs font-semibold truncate">{nom}</div>
-                <div className="text-xs truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>{roleLabel}</div>
-              </div>
-            )}
-          </div>
         </div>
-      </aside>
+      )
+    })}
+  </nav>
+
+  {/* User */}
+  <div
+    className="p-2.5 space-y-0.5 flex-shrink-0"
+    style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
+  >
+    <div className={`flex items-center gap-2.5 px-2 py-2 mb-1 ${sidebarOpen ? '' : 'justify-center'}`}>
+      <div
+        className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold text-white"
+        style={{ background: '#C9A227', boxShadow: '0 0 0 2px rgba(201,162,39,0.25)' }}
+      >
+        {initials}
+      </div>
+      {sidebarOpen && (
+        <div className="flex-1 overflow-hidden">
+          <div className="text-white text-xs font-semibold truncate">{nom}</div>
+          <div className="text-[11px] truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>{roleLabel}</div>
+        </div>
+      )}
+    </div>
+    {[
+      { onClick: ouvrirProfil, icon: User, label: 'Mon profil' },
+      { onClick: ouvrirParametres, icon: Settings, label: 'Paramètres' },
+    ].map((it) => (
+      <button
+        key={it.label}
+        onClick={it.onClick}
+        className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors hover:bg-white/5 ${sidebarOpen ? '' : 'justify-center'}`}
+        style={{ color: 'rgba(255,255,255,0.7)' }}
+        title={!sidebarOpen ? it.label : undefined}
+      >
+        <it.icon size={15} className="flex-shrink-0" style={{ color: 'rgba(255,255,255,0.45)' }} />
+        {sidebarOpen && <span className="truncate">{it.label}</span>}
+      </button>
+    ))}
+    <button
+      onClick={() => { setUserMenuOpen(false); logout() }}
+      className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors hover:bg-red-500/10 ${sidebarOpen ? '' : 'justify-center'}`}
+      style={{ color: 'rgba(255,255,255,0.7)' }}
+      title={!sidebarOpen ? 'Déconnexion' : undefined}
+    >
+      <LogOut size={15} className="flex-shrink-0" style={{ color: 'rgba(255,255,255,0.45)' }} />
+      {sidebarOpen && <span className="truncate">Déconnexion</span>}
+    </button>
+  </div>
+</aside>
 
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
