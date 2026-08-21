@@ -209,7 +209,7 @@ export default function DocsRH() {
           </div>
 
           {/* Table des demandes */}
-          <section className="bg-white rounded-xl border border-gray-200/80 shadow-sm overflow-hidden flex-1">
+          <section className="bg-white rounded-xl border border-gray-200/80 shadow-sm overflow-hidden grow shrink-0">
             <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2.5">
               <span className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#F3F4F6' }}>
                 <Inbox size={15} style={{ color: '#000000' }} />
