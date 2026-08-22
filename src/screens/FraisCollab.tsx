@@ -34,6 +34,8 @@ export default function FraisCollab() {
   const [priorite, setPriorite] = useState('Normale')
   const [remarque, setRemarque] = useState('')
   const [files, setFiles] = useState<File[]>([])
+  const [justifsExistants, setJustifsExistants] = useState<string[]>([])
+  const [justifsASupprimer, setJustifsASupprimer] = useState<string[]>([])
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -63,6 +65,7 @@ export default function FraisCollab() {
     setEditing(null)
     setTitre(''); setDevise('MAD'); setMontant(''); setDate(new Date().toISOString().slice(0, 10))
     setPriorite('Normale'); setRemarque(''); setFiles([])
+    setJustifsExistants([]); setJustifsASupprimer([])
     setShowModal(true)
   }
 
@@ -70,13 +73,21 @@ export default function FraisCollab() {
     setEditing(n)
     setTitre(n.titre); setDevise(n.devise); setMontant(String(n.montantTotal))
     setDate(n.date); setPriorite(n.priorite); setRemarque(n.remarque ?? ''); setFiles([])
+    setJustifsExistants(n.justificatifs ?? [])
+    setJustifsASupprimer([])
     setShowModal(true)
   }
 
   const submit = async (e: FormEvent) => {
     e.preventDefault()
     setSaving(true)
-    const payload = { titre: titre.trim(), devise, date, priorite, remarque: remarque.trim() || null, montantTotal: Number(montant) || 0, depenses: [] }
+    const payload = {
+      titre: titre.trim(), devise, date, priorite,
+      remarque: remarque.trim() || null,
+      montantTotal: Number(montant) || 0,
+      depenses: [],
+      justificatifsASupprimer: justifsASupprimer,
+    }
     try {
       if (editing) {
         await fraisApi.modifier(editing.id, payload, files)
@@ -255,6 +266,29 @@ export default function FraisCollab() {
                     ))}
                   </div>
                 )}
+                {editing && justifsExistants.length > 0 && (
+                  <div className="mt-2 space-y-1">
+                    <div className="text-[11px] font-semibold text-gray-500">Justificatifs déjà attachés</div>
+                    {justifsExistants.map((url) => {
+                      const marque = justifsASupprimer.includes(url)
+                      return (
+                        <div key={url}
+                          className="flex items-center justify-between text-xs px-3 py-1.5 rounded-lg"
+                          style={{ background: marque ? '#FEF2F2' : '#F7F8FA', textDecoration: marque ? 'line-through' : 'none' }}>
+                          <span className="truncate" style={{ color: marque ? '#B91C1C' : undefined }}>{url.split('/').pop()}</span>
+                          <button type="button"
+                            onClick={() => setJustifsASupprimer((prev) =>
+                              marque ? prev.filter((u) => u !== url) : [...prev, url])}
+                            className="text-xs font-medium"
+                            style={{ color: marque ? '#6B7280' : '#B91C1C' }}>
+                            {marque ? 'Annuler' : 'Retirer'}
+                          </button>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+               
               </div>
               <div>
                 <label className="block text-xs font-semibold text-gray-600 mb-1">Remarque</label>

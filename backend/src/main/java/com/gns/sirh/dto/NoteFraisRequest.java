@@ -13,7 +13,9 @@ public record NoteFraisRequest(
         String priorite,
         String remarque,
         @NotNull(message = "Le montant total est obligatoire") Double montantTotal,
-        List<DepenseRequest> depenses
+        List<DepenseRequest> depenses,
+        List<String> justificatifsASupprimer
+
 ) {
     public record DepenseRequest(String libelle, Double montant) {
     }

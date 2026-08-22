@@ -132,7 +132,7 @@ public class FraisService {
         return toResponse(saved);
     }
 
-    @Transactional
+   @Transactional
     public NoteFraisResponse modifier(Long id, AuthUser user, NoteFraisRequest req, List<MultipartFile> fichiers) {
         NoteFrais n = verifierAttenteProprietaire(id, user);
         n.setTitre(req.titre());
@@ -154,6 +154,12 @@ public class FraisService {
                 n.getDepenses().add(d);
             }
         }
+
+        // Retire les justificatifs explicitement marqués à supprimer par le collaborateur
+        if (req.justificatifsASupprimer() != null && !req.justificatifsASupprimer().isEmpty()) {
+            n.getJustificatifs().removeIf(j -> req.justificatifsASupprimer().contains(j.getFichierUrl()));
+        }
+
         if (fichiers != null) {
             for (MultipartFile f : fichiers) {
                 if (f != null && !f.isEmpty()) {
@@ -169,7 +175,6 @@ public class FraisService {
         auditService.log(user.email(), "NOTE_FRAIS", "Note " + saved.getReference() + " modifiée");
         return toResponse(saved);
     }
-
     @Transactional
     public NoteFraisResponse annuler(Long id, AuthUser user) {
         NoteFrais n = verifierAttenteProprietaire(id, user);
