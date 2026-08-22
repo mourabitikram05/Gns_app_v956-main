@@ -3,7 +3,7 @@ import {
   LayoutDashboard, CalendarDays, Receipt, FileText, Calendar,
   Briefcase, BookOpen, PartyPopper,
   BarChart3, Shield, Bell, Search, ChevronDown, LogOut,
-  Settings, User, Menu, X, Wrench, FileDown
+  Settings, User, Menu, X, Wrench, FileDown , PanelLeftClose, PanelLeftOpen
 } from 'lucide-react'
 import gnsLogo from '@/imports/GNS_logo.png'
 import gnsIconLogo from '@/imports/GNS_icon.png'   
@@ -62,6 +62,7 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
   const { user, logout, isRh } = useAuth()
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const [sidebarMenuOpen, setSidebarMenuOpen] = useState(false) // ← nouveau : menu du sidebar
   const [notifOpen, setNotifOpen] = useState(false)
   const [notifCount, setNotifCount] = useState(0)
   const [notifs, setNotifs] = useState<NotificationItem[]>([])
@@ -140,33 +141,43 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
 >
   {/* Logo */}
  {/* En-tête — logo cliquable, pas de bouton séparé */}
-<div
-  className="relative flex items-center justify-center flex-shrink-0"
-  style={{ minHeight: 68, padding: sidebarOpen ? '18px 16px' : '14px 8px' }}
->
-  {sidebarOpen ? (
-    <>
-      <img src={gnsLogo} alt="GNS Technologies" className="h-11 w-auto" />
+  <div
+    className="relative flex items-center justify-center flex-shrink-0"
+    style={{ minHeight: 68, padding: sidebarOpen ? '18px 16px' : '14px 8px' }}
+  >
+    {sidebarOpen ? (
+      <>
+        <img src={gnsLogo} alt="GNS Technologies" className="h-12 w-auto" />
+        <button
+          onClick={() => setSidebarOpen(false)}
+          className="absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg flex items-center justify-center transition-colors"
+          style={{ background: 'rgba(255,255,255,0.08)' }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.16)')}
+          onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.08)')}
+          title="Réduire le menu"
+        >
+          <PanelLeftClose size={15} color="#D1D5DB" />
+        </button>
+      </>
+    ) : (
       <button
-        onClick={() => setSidebarOpen(false)}
-        className="absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg flex items-center justify-center transition-colors hover:bg-white/10"
-        title="Réduire le menu"
+        onClick={() => setSidebarOpen(true)}
+        className="group relative w-10 h-10 rounded-xl flex items-center justify-center transition-all"
+        style={{ background: 'transparent' }}
+        onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.08)')}
+        onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+        title="Ouvrir le menu"
       >
-        <X size={14} color="#9CA3AF" />
+        <img src={gnsIconLogo} alt="GNS" className="w-8 h-8 object-contain transition-opacity group-hover:opacity-0" />
+        <PanelLeftOpen
+          size={17}
+          color="#C9A227"
+          className="absolute inset-0 m-auto opacity-0 group-hover:opacity-100 transition-opacity"
+        />
       </button>
-    </>
-  ) : (
-    <button
-      onClick={() => setSidebarOpen(true)}
-      className="w-10 h-10 rounded-xl flex items-center justify-center transition-all hover:bg-white/10 hover:scale-105"
-      title="Ouvrir le menu"
-    >
-      <img src={gnsIconLogo} alt="GNS" className="w-8 h-8 object-contain" />
-    </button>
-  )}
-</div>
-<div className="h-px flex-shrink-0" style={{ background: 'linear-gradient(90deg, #C9A227 0%, rgba(201,162,39,0) 70%)' }} />
-
+    )}
+  </div>
+  <div className="h-px flex-shrink-0" style={{ background: 'linear-gradient(90deg, #C9A227 0%, rgba(201,162,39,0) 70%)' }} />
 
   {/* Nav */}
   <nav className="flex-1 overflow-y-auto py-3">
@@ -224,49 +235,84 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
   </nav>
 
   {/* User */}
-  <div
-    className="p-2.5 space-y-0.5 flex-shrink-0"
-    style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
+{/* User */}
+<div
+  className="relative p-2.5 flex-shrink-0"
+  style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
+>
+  <button
+    onClick={() => setSidebarMenuOpen(!sidebarMenuOpen)}
+    className={`w-full flex items-center gap-2.5 px-2 py-2 rounded-lg transition-colors ${sidebarOpen ? '' : 'justify-center'}`}
+    style={{
+      background: sidebarMenuOpen ? 'rgba(201,162,39,0.12)' : 'transparent',
+      boxShadow: sidebarMenuOpen ? 'inset 0 0 0 1px rgba(201,162,39,0.3)' : 'none',
+    }}
+    onMouseEnter={(e) => { if (!sidebarMenuOpen) e.currentTarget.style.background = 'rgba(255,255,255,0.05)' }}
+    onMouseLeave={(e) => { if (!sidebarMenuOpen) e.currentTarget.style.background = 'transparent' }}
   >
-    <div className={`flex items-center gap-2.5 px-2 py-2 mb-1 ${sidebarOpen ? '' : 'justify-center'}`}>
-      <div
-        className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold text-white"
-        style={{ background: '#C9A227', boxShadow: '0 0 0 2px rgba(201,162,39,0.25)' }}
-      >
-        {initials}
-      </div>
-      {sidebarOpen && (
-        <div className="flex-1 overflow-hidden">
+    <div
+      className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold text-white transition-all"
+      style={{
+        background: '#C9A227',
+        boxShadow: sidebarMenuOpen ? '0 0 0 2px rgba(201,162,39,0.6)' : '0 0 0 2px rgba(201,162,39,0.25)',
+      }}
+    >
+      {initials}
+    </div>
+    {sidebarOpen && (
+      <>
+        <div className="flex-1 overflow-hidden text-left">
           <div className="text-white text-xs font-semibold truncate">{nom}</div>
           <div className="text-[11px] truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>{roleLabel}</div>
         </div>
-      )}
-    </div>
-    {[
-      { onClick: ouvrirProfil, icon: User, label: 'Mon profil' },
-      { onClick: ouvrirParametres, icon: Settings, label: 'Paramètres' },
-    ].map((it) => (
-      <button
-        key={it.label}
-        onClick={it.onClick}
-        className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors hover:bg-white/5 ${sidebarOpen ? '' : 'justify-center'}`}
-        style={{ color: 'rgba(255,255,255,0.7)' }}
-        title={!sidebarOpen ? it.label : undefined}
-      >
-        <it.icon size={15} className="flex-shrink-0" style={{ color: 'rgba(255,255,255,0.45)' }} />
-        {sidebarOpen && <span className="truncate">{it.label}</span>}
-      </button>
-    ))}
-    <button
-      onClick={() => { setUserMenuOpen(false); logout() }}
-      className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors hover:bg-red-500/10 ${sidebarOpen ? '' : 'justify-center'}`}
-      style={{ color: 'rgba(255,255,255,0.7)' }}
-      title={!sidebarOpen ? 'Déconnexion' : undefined}
+        <ChevronDown
+          size={14}
+          style={{
+            color: sidebarMenuOpen ? '#C9A227' : 'rgba(255,255,255,0.4)',
+            transform: sidebarMenuOpen ? 'rotate(0deg)' : 'rotate(180deg)',
+            transition: 'transform 0.2s ease, color 0.2s ease',
+          }}
+        />
+      </>
+    )}
+  </button>
+
+  {sidebarMenuOpen && (
+    <div
+      className="absolute bottom-full left-2 right-2 mb-2 rounded-xl overflow-hidden shadow-2xl border z-50"
+      style={{ background: '#242424', borderColor: 'rgba(201,162,39,0.25)' }}
     >
-      <LogOut size={15} className="flex-shrink-0" style={{ color: 'rgba(255,255,255,0.45)' }} />
-      {sidebarOpen && <span className="truncate">Déconnexion</span>}
-    </button>
-  </div>
+      <div className="px-4 py-3 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)' }}>
+        <div className="text-sm font-semibold text-white truncate">{nom}</div>
+        <div className="text-xs truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>{user?.email}</div>
+      </div>
+      <button
+        onClick={() => { setSidebarMenuOpen(false); ouvrirProfil() }}
+        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-white/8"
+        style={{ color: 'rgba(255,255,255,0.8)' }}
+      >
+        <User size={15} style={{ color: 'rgba(255,255,255,0.5)' }} />
+        Mon profil
+      </button>
+      <button
+        onClick={() => { setSidebarMenuOpen(false); ouvrirParametres() }}
+        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-white/8"
+        style={{ color: 'rgba(255,255,255,0.8)' }}
+      >
+        <Settings size={15} style={{ color: 'rgba(255,255,255,0.5)' }} />
+        Paramètres
+      </button>
+      <button
+        onClick={() => { setSidebarMenuOpen(false); logout() }}
+        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-red-500/10"
+        style={{ color: '#F87171' }}
+      >
+        <LogOut size={15} style={{ color: '#F87171' }} />
+        Déconnexion
+      </button>
+    </div>
+  )}
+</div>
 </aside>
 
       {/* Main */}
@@ -434,9 +480,17 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
       </div>
 
       {/* Click away */}
-      {(userMenuOpen || notifOpen || demandeOpen) && (
-        <div className="fixed inset-0 z-40" onClick={() => { setUserMenuOpen(false); setNotifOpen(false); setDemandeOpen(false) }} />
-      )}
+{(userMenuOpen || notifOpen || demandeOpen || sidebarMenuOpen) && (
+  <div
+    className="fixed inset-0 z-40"
+    onClick={() => {
+      setUserMenuOpen(false)
+      setNotifOpen(false)
+      setDemandeOpen(false)
+      setSidebarMenuOpen(false)
+    }}
+  />
+)}
 
       {/* Les pages Profil et Paramètres sont des écrans dédiés (voir App.tsx) */}
     </div>
