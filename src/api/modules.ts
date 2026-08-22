@@ -108,7 +108,7 @@ export const congesApi = {
   refuser: (id: number, motif: string) =>
     put<DemandeConge>(`/conges/demandes/${id}/refuser`, { motif }),
   justificatif: (fileName: string) =>
-    downloadFile(`/conges/justificatifs/${encodeURIComponent(fileName)}`, fileName),
+    openFile(`/conges/justificatifs/${encodeURIComponent(fileName)}`, fileName),
   calendrierEquipe: (mois?: number, annee?: number) => {
     const query = new URLSearchParams()
     if (mois !== undefined) query.set('mois', String(mois))
@@ -213,7 +213,7 @@ export const fraisApi = {
   refuser: (id: number, motif: string) =>
     put<NoteFrais>(`/frais/notes/${id}/refuser`, { motif }),
   justificatif: (fileName: string) =>
-    downloadFile(`/frais/justificatifs/${encodeURIComponent(fileName)}`, fileName),
+    openFile(`/frais/justificatifs/${encodeURIComponent(fileName)}`, fileName),
   exporterNotes: () => downloadFile('/frais/export', 'notes_de_frais.xlsx'),
 }
 

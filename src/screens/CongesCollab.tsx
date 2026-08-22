@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState, type FormEvent } from 'react'
-import { ChevronLeft, ChevronRight, Upload, X, Pencil, Ban, Loader2 } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Upload, X, Pencil, Ban, Loader2, FileText, Eye } from 'lucide-react'
 import { congesApi, employeApi } from '../api/modules'
 import type { DemandeConge, EmployeProfile, SoldeResponse, TypeConge } from '../api/types'
 import { useAuth } from '../context/AuthContext'
@@ -450,9 +450,26 @@ export default function CongesCollab() {
                       {STATUS_BADGES[detail.statut]?.label ?? detail.statut}
                     </span>
                   </div>
-                  {detail.statut === 'REFUSEE' && detail.motifRefus && (
+                                    {detail.statut === 'REFUSEE' && detail.motifRefus && (
                     <div className="rounded-lg px-3 py-2 text-xs" style={{ background: '#FEF2F2', border: '1px solid #FECACA', color: '#991B1B' }}>
                       <span className="font-semibold">Motif du refus : </span>{detail.motifRefus}
+                    </div>
+                  )}
+                  {detail.justificatifUrl && (
+                    <div className="flex items-center justify-between gap-2 rounded-lg border border-gray-100 px-3 py-2" style={{ background: '#F7F8FA' }}>
+                      <div className="flex items-center gap-2 min-w-0">
+                        <FileText size={15} className="flex-shrink-0" style={{ color: '#6B7280' }} />
+                        <span className="text-sm text-gray-700 truncate">
+                          {(detail.justificatifUrl.split('/').pop() ?? '').replace(/^\d{13}_/, '') || 'justificatif'}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => congesApi.justificatif((detail.justificatifUrl as string).split('/').pop() ?? '').catch((e) => toastError(e.message))}
+                        className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all hover:opacity-90 flex-shrink-0"
+                        style={{ background: '#C9A227', color: '#111' }}
+                      >
+                        <Eye size={13} /> Voir
+                      </button>
                     </div>
                   )}
                   <div className="border-t border-gray-100 pt-3">
