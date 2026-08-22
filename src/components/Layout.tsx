@@ -11,6 +11,7 @@ import { useAuth } from '../context/AuthContext'
 import { notificationsApi } from '../api/modules'
 import type { NotificationItem } from '../api/types'
 import { fmtDateTime, useToasts } from './ui'
+import { useRef } from 'react'
 
 const NAV_ITEMS = [
   { id: 'dashboard-rh', label: 'Dashboard RH', icon: LayoutDashboard, group: 'Vue RH', rhOnly: true },
@@ -61,6 +62,8 @@ function userInitials(name: string): string {
 export default function Layout({ activeScreen, onNavigate, children }: LayoutProps) {
   const { user, logout, isRh } = useAuth()
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const sidebarAvatarRef = useRef<HTMLButtonElement>(null)
+  const [sidebarAvatarRect, setSidebarAvatarRect] = useState<DOMRect | null>(null)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
   const [sidebarMenuOpen, setSidebarMenuOpen] = useState(false) // ← nouveau : menu du sidebar
   const [notifOpen, setNotifOpen] = useState(false)
@@ -85,6 +88,12 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
     return () => clearInterval(timer)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
+
+  useEffect(() => {
+  if (sidebarMenuOpen && sidebarAvatarRef.current) {
+    setSidebarAvatarRect(sidebarAvatarRef.current.getBoundingClientRect())
+  }
+  }, [sidebarMenuOpen])
 
   const ouvrirProfil = () => {
     setUserMenuOpen(false)
@@ -235,84 +244,100 @@ export default function Layout({ activeScreen, onNavigate, children }: LayoutPro
   </nav>
 
   {/* User */}
-{/* User */}
-<div
-  className="relative p-2.5 flex-shrink-0"
-  style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
->
-  <button
-    onClick={() => setSidebarMenuOpen(!sidebarMenuOpen)}
-    className={`w-full flex items-center gap-2.5 px-2 py-2 rounded-lg transition-colors ${sidebarOpen ? '' : 'justify-center'}`}
-    style={{
-      background: sidebarMenuOpen ? 'rgba(201,162,39,0.12)' : 'transparent',
-      boxShadow: sidebarMenuOpen ? 'inset 0 0 0 1px rgba(201,162,39,0.3)' : 'none',
-    }}
-    onMouseEnter={(e) => { if (!sidebarMenuOpen) e.currentTarget.style.background = 'rgba(255,255,255,0.05)' }}
-    onMouseLeave={(e) => { if (!sidebarMenuOpen) e.currentTarget.style.background = 'transparent' }}
+  {/* User */}
+  <div
+    className="relative p-2.5 flex-shrink-0"
+    style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
   >
-    <div
-      className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold text-white transition-all"
+    <button
+      onClick={() => setSidebarMenuOpen(!sidebarMenuOpen)}
+      className={`w-full flex items-center gap-2.5 px-2 py-2 rounded-lg transition-colors ${sidebarOpen ? '' : 'justify-center'}`}
       style={{
-        background: '#C9A227',
-        boxShadow: sidebarMenuOpen ? '0 0 0 2px rgba(201,162,39,0.6)' : '0 0 0 2px rgba(201,162,39,0.25)',
+        background: sidebarMenuOpen ? 'rgba(201,162,39,0.12)' : 'transparent',
+        boxShadow: sidebarMenuOpen ? 'inset 0 0 0 1px rgba(201,162,39,0.3)' : 'none',
       }}
+      onMouseEnter={(e) => { if (!sidebarMenuOpen) e.currentTarget.style.background = 'rgba(255,255,255,0.05)' }}
+      onMouseLeave={(e) => { if (!sidebarMenuOpen) e.currentTarget.style.background = 'transparent' }}
     >
-      {initials}
-    </div>
-    {sidebarOpen && (
-      <>
-        <div className="flex-1 overflow-hidden text-left">
-          <div className="text-white text-xs font-semibold truncate">{nom}</div>
-          <div className="text-[11px] truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>{roleLabel}</div>
-        </div>
-        <ChevronDown
-          size={14}
-          style={{
-            color: sidebarMenuOpen ? '#C9A227' : 'rgba(255,255,255,0.4)',
-            transform: sidebarMenuOpen ? 'rotate(0deg)' : 'rotate(180deg)',
-            transition: 'transform 0.2s ease, color 0.2s ease',
-          }}
-        />
-      </>
-    )}
-  </button>
-
-  {sidebarMenuOpen && (
-    <div
-      className="absolute bottom-full left-2 right-2 mb-2 rounded-xl overflow-hidden shadow-2xl border z-50"
-      style={{ background: '#242424', borderColor: 'rgba(201,162,39,0.25)' }}
-    >
-      <div className="px-4 py-3 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)' }}>
-        <div className="text-sm font-semibold text-white truncate">{nom}</div>
-        <div className="text-xs truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>{user?.email}</div>
+      <div
+        className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold text-white transition-all"
+        style={{
+          background: '#C9A227',
+          boxShadow: sidebarMenuOpen ? '0 0 0 2px rgba(201,162,39,0.6)' : '0 0 0 2px rgba(201,162,39,0.25)',
+        }}
+      >
+        {initials}
       </div>
-      <button
-        onClick={() => { setSidebarMenuOpen(false); ouvrirProfil() }}
-        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-white/8"
-        style={{ color: 'rgba(255,255,255,0.8)' }}
+      {sidebarOpen && (
+        <>
+          <div className="flex-1 overflow-hidden text-left">
+            <div className="text-white text-xs font-semibold truncate">{nom}</div>
+            <div className="text-[11px] truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>{roleLabel}</div>
+          </div>
+          <ChevronDown
+            size={14}
+            style={{
+              color: sidebarMenuOpen ? '#C9A227' : 'rgba(255,255,255,0.4)',
+              transform: sidebarMenuOpen ? 'rotate(0deg)' : 'rotate(180deg)',
+              transition: 'transform 0.2s ease, color 0.2s ease',
+            }}
+          />
+        </>
+      )}
+    </button>
+
+    {sidebarMenuOpen && sidebarOpen && (
+      /* Sidebar ouvert — popup complet avec texte */
+      <div
+        className="absolute bottom-full left-2 right-2 mb-2 rounded-xl overflow-hidden shadow-2xl border z-50"
+        style={{ background: '#242424', borderColor: 'rgba(201,162,39,0.25)' }}
       >
-        <User size={15} style={{ color: 'rgba(255,255,255,0.5)' }} />
-        Mon profil
-      </button>
-      <button
-        onClick={() => { setSidebarMenuOpen(false); ouvrirParametres() }}
-        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-white/8"
-        style={{ color: 'rgba(255,255,255,0.8)' }}
+        <div className="px-4 py-3 border-b" style={{ borderColor: 'rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)' }}>
+          <div className="text-sm font-semibold text-white truncate">{nom}</div>
+          <div className="text-xs truncate" style={{ color: 'rgba(255,255,255,0.4)' }}>{user?.email}</div>
+        </div>
+        <button onClick={() => { setSidebarMenuOpen(false); ouvrirProfil() }}
+          className="w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-white/8"
+          style={{ color: 'rgba(255,255,255,0.8)' }}>
+          <User size={15} style={{ color: 'rgba(255,255,255,0.5)' }} /> Mon profil
+        </button>
+        <button onClick={() => { setSidebarMenuOpen(false); ouvrirParametres() }}
+          className="w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-white/8"
+          style={{ color: 'rgba(255,255,255,0.8)' }}>
+          <Settings size={15} style={{ color: 'rgba(255,255,255,0.5)' }} /> Paramètres
+        </button>
+        <button onClick={() => { setSidebarMenuOpen(false); logout() }}
+          className="w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-red-500/10"
+          style={{ color: '#F87171' }}>
+          <LogOut size={15} style={{ color: '#F87171' }} /> Déconnexion
+        </button>
+      </div>
+    )}
+
+    {sidebarMenuOpen && !sidebarOpen && (
+      /* Sidebar réduit — icônes seules, reste dans les limites du sidebar */
+      <div
+        className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 rounded-xl overflow-hidden shadow-2xl border z-50 flex flex-col items-center py-1.5 gap-0.5"
+        style={{ background: '#242424', borderColor: 'rgba(201,162,39,0.25)', width: 44 }}
       >
-        <Settings size={15} style={{ color: 'rgba(255,255,255,0.5)' }} />
-        Paramètres
-      </button>
-      <button
-        onClick={() => { setSidebarMenuOpen(false); logout() }}
-        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-red-500/10"
-        style={{ color: '#F87171' }}
-      >
-        <LogOut size={15} style={{ color: '#F87171' }} />
-        Déconnexion
-      </button>
-    </div>
-  )}
-</div>
+        <button onClick={() => { setSidebarMenuOpen(false); ouvrirProfil() }}
+          className="w-9 h-9 rounded-lg flex items-center justify-center transition-colors hover:bg-white/8"
+          title="Mon profil">
+          <User size={16} style={{ color: 'rgba(255,255,255,0.7)' }} />
+        </button>
+        <button onClick={() => { setSidebarMenuOpen(false); ouvrirParametres() }}
+          className="w-9 h-9 rounded-lg flex items-center justify-center transition-colors hover:bg-white/8"
+          title="Paramètres">
+          <Settings size={16} style={{ color: 'rgba(255,255,255,0.7)' }} />
+        </button>
+        <button onClick={() => { setSidebarMenuOpen(false); logout() }}
+          className="w-9 h-9 rounded-lg flex items-center justify-center transition-colors hover:bg-red-500/10"
+          title="Déconnexion">
+          <LogOut size={16} style={{ color: '#F87171' }} />
+        </button>
+      </div>
+    )}
+  </div>
 </aside>
 
       {/* Main */}
